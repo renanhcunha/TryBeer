@@ -17,7 +17,7 @@ function Login() {
 
     if (user) {
       setUserData(user);
-      if (role === 'administrador') {
+      if (user.role === 'administrador') {
         history.push('/orders');
       } else {
         history.push('/products');
@@ -42,7 +42,7 @@ function Login() {
         type="password"
       />
       <SubmitButton
-        onClick={ () => handleHome(email, password) }
+        onClickFunction={ () => handleHome(email, password) }
         name="Entrar"
         disabled={ loginDataValidator(email, password) }
         dataTestId="signin-btn"

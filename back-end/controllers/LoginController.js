@@ -11,7 +11,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-LoginController.get('/', async (req, res) => {
+LoginController.post('/', async (req, res) => {
   const { email, password } = req.body;
   const exists = await userExists(email, password);
   const token = jwt.sign({ data: [email, password] }, secret, jwtConfig);

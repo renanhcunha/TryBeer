@@ -18,12 +18,14 @@ function Input({ dataTestId, name, field, setField, type = 'text' }) {
   );
 }
 
+Input.defaultProps = { type: 'text' };
+
 Input.propTypes = {
   name: PropTypes.string.isRequired,
-  field: PropTypes.func.isRequired,
+  field: PropTypes.string.isRequired,
   setField: PropTypes.func.isRequired,
-  type: PropTypes.string.isRequired,
   dataTestId: PropTypes.string.isRequired,
+  type: PropTypes.string,
 };
 
 export default Input;

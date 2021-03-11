@@ -1,5 +1,5 @@
 const setUserData = (user) => {
-  localStorage.setItem(JSON.stringify(user));
+  localStorage.setItem('user', JSON.stringify(user));
 };
 
 module.exports = {

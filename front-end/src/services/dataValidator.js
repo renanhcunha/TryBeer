@@ -4,7 +4,7 @@ const loginDataValidator = (insertedEmail, insertedPassword) => {
   const emailIsValid = emailRegex.test(insertedEmail);
   const passwordIsValid = insertedPassword.length >= minimumPasswordLength;
 
-  return !emailIsValid && !passwordIsValid;
+  return !emailIsValid || !passwordIsValid;
 };
 
 module.exports = {

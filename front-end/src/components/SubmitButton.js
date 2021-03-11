@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function SubmitButton({ name, disabled, dataTestId }) {
+function SubmitButton({ name, disabled, dataTestId, onClickFunction }) {
   return (
     <div>
-      <button type="button" disabled={ disabled } data-testid={ dataTestId }>
+      <button
+        type="button"
+        disabled={ disabled }
+        data-testid={ dataTestId }
+        onClick={ onClickFunction }
+      >
         { name }
       </button>
     </div>
