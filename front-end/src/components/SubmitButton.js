@@ -19,6 +19,7 @@ function SubmitButton({ name, disabled, dataTestId, onClickFunction }) {
 SubmitButton.propTypes = {
   name: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
+  onClickFunction: PropTypes.func.isRequired,
   dataTestId: PropTypes.string.isRequired,
 };
 
