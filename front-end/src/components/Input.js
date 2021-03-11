@@ -1,15 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function Input({ dataTestId, name, field, setField, type='text' }) {
-
+function Input({ dataTestId, name, field, setField, type = 'text' }) {
   return (
     <form>
-      <label>
+      <label htmlFor={ name }>
         {name}
         <input
           data-testid={ dataTestId }
           value={ field }
-          onChange={({ target: { value } }) => setField(value)}
+          id={ name }
+          onChange={ ({ target: { value } }) => setField(value) }
           type={ type }
         />
       </label>
@@ -17,5 +18,12 @@ function Input({ dataTestId, name, field, setField, type='text' }) {
   );
 }
 
-export default Input;
+Input.propTypes = {
+  name: PropTypes.string.isRequired,
+  field: PropTypes.func.isRequired,
+  setField: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  dataTestId: PropTypes.string.isRequired,
+};
 
+export default Input;
