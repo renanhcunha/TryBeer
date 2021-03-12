@@ -7,7 +7,6 @@ function RegisterProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [check, setCheck] = useState(false);
-  const [validUser, setValidUser] = useState(true);
 
   const providerValue = {
     name,
@@ -18,8 +17,6 @@ function RegisterProvider({ children }) {
     setPassword,
     check,
     setCheck,
-    validUser,
-    setValidUser,
   };
 
   return (

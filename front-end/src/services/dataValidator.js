@@ -9,7 +9,7 @@ const validatePassword = (password) => {
 };
 
 const validateName = (name) => {
-  const regex = /\b[A-Za-zÀ-ú][A-Za-zÀ-ú]+,?\s[A-Za-zÀ-ú][A-Za-zÀ-ú]{2,19}\b/gi;
+  const regex = /^([a-zA-Zà-úÀ-Ú]|\s+)+$/i;
   const regexValidation = regex.test(name);
   const minNameLength = 12;
   return name.length >= minNameLength && regexValidation;

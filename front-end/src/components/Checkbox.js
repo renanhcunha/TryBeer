@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Checkbox({ dataTestId, name, field, setField, type = 'checkbox' }) {
+function Checkbox({ id, name, field, setField, type = 'checkbox' }) {
   return (
     <form>
       <label htmlFor={ name }>
         {name}
         <input
-          data-testid={ dataTestId }
+          data-testid={ id }
           value={ field }
           id={ name }
           onChange={ () => setField(!field) }
@@ -22,9 +22,9 @@ Checkbox.defaultProps = { type: 'checkbox' };
 
 Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
-  field: PropTypes.string.isRequired,
+  field: PropTypes.bool.isRequired,
   setField: PropTypes.func.isRequired,
-  dataTestId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string,
 };
 

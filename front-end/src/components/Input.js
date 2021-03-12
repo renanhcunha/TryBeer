@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Input({ dataTestId, name, field, setField, type = 'text' }) {
+function Input({ id, name, field, setField, type = 'text' }) {
   return (
     <form>
       <label htmlFor={ name }>
         {name}
         <input
-          data-testid={ dataTestId }
+          data-testid={ id }
           value={ field }
           id={ name }
           onChange={ ({ target: { value } }) => setField(value) }
@@ -24,7 +24,7 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
   setField: PropTypes.func.isRequired,
-  dataTestId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   type: PropTypes.string,
 };
 
