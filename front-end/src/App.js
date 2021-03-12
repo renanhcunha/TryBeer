@@ -10,8 +10,8 @@ function App() {
     <LoginProvider>
       <BrowserRouter>
         <Switch>
+          <Route path="/admin/orders" component={ Orders } />
           <Route path="/login" component={ Login } />
-          <Route path="/orders" component={ Orders } />
           <Route path="/products" component={ Products } />
         </Switch>
       </BrowserRouter>

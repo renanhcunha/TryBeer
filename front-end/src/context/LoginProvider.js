@@ -5,12 +5,15 @@ import LoginContext from './LoginContext';
 function LoginProvider({ children }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [validUser, setValidUser] = useState(true);
 
   const providerValue = {
     email,
     setEmail,
     password,
     setPassword,
+    validUser,
+    setValidUser,
   };
 
   return (

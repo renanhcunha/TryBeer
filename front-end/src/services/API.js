@@ -11,9 +11,7 @@ const getUserData = async (email, password) => {
 
   const { name, email: fetchedEmail, role } = res.user;
   const { token } = res;
-  const formattedUser = {
-    user: { name, email: fetchedEmail, token, role },
-  };
+  const formattedUser = { name, email: fetchedEmail, token, role };
 
   return formattedUser;
 };

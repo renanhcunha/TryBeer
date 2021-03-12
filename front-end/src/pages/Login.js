@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Input from '../components/Input';
 import SubmitButton from '../components/SubmitButton';
@@ -10,16 +10,16 @@ import { loginDataValidator } from '../services/dataValidator';
 function Login() {
   const history = useHistory();
   const { email, setEmail, password, setPassword } = useContext(LoginContext);
-  const [validUser, setValidUser] = useState(true);
+  const { validUser, setValidUser } = useContext(LoginContext);
 
-  const handleHome = (insertedEmail, insertedPassword) => {
-    const user = API.getUserData(insertedEmail, insertedPassword);
+  const handleHome = async (insertedEmail, insertedPassword) => {
+    const user = await API.getUserData(insertedEmail, insertedPassword);
 
     if (user) {
       setUserData(user);
-      if (user.role === 'administrador') {
-        history.push('/orders');
-      } else {
+      if (user.role === 'administrator') {
+        history.push('/admin/orders');
+      } else if (user.role === 'client') {
         history.push('/products');
       }
     }
