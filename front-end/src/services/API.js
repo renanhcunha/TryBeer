@@ -1,21 +1,21 @@
 const getUserData = async (email, password) => {
-  const { exists, token } = await fetch('http://localhost:3001/login', {
+  const res = await fetch('http://localhost:3001/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then((result) => result);
+  }).then((result) => result.json());
 
-  if (exists !== false) {
-    const { name, email: fetchedEmail, role } = exists;
-    const formattedUser = {
-      user: { name, email: fetchedEmail, token, role },
-    };
+  if (res.message) return false;
 
-    return formattedUser;
-  }
-  return false;
+  const { name, email: fetchedEmail, role } = res.user;
+  const { token } = res;
+  const formattedUser = {
+    user: { name, email: fetchedEmail, token, role },
+  };
+
+  return formattedUser;
 };
 
 const API = {
