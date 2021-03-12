@@ -17,7 +17,7 @@ LoginController.post('/', async (req, res) => {
   const user = await getUserByEmail(email);
   
   if (!user || user.password !== password) {
-    return res.status(BAD_REQUEST).json({ message: 'Email ou senha inválidos' }); 
+    return res.status(BAD_REQUEST).json({ message: 'Email ou senha inválidos.' }); 
   }
   const token = jwt.sign({ data: [email, password] }, secret, jwtConfig);
   
