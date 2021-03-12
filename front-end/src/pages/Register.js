@@ -39,7 +39,7 @@ function Register() {
       />
       <Checkbox
         id="signup-seller"
-        name="Quero vender"
+        name="Quero Vender"
         field={ check }
         setField={ setCheck }
       />
