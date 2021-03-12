@@ -1,14 +1,11 @@
 const connection = require('./connection');
 
-const userExists = async (email, password) => {
+const getUserByEmail = async (email) => {
   const [[user]] = await connection.execute('SELECT * FROM users WHERE email=? LIMIT 1', [email]);
-  if (user && user.password === password) {
-    return user;
-  }
 
-  return false;
+  return user;
 };
 
 module.exports = {
-  userExists,
+  getUserByEmail,
 };
