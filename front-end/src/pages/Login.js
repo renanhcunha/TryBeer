@@ -43,12 +43,12 @@ function Login() {
       />
       <SubmitButton
         onClickFunction={ () => handleHome(email, password) }
-        name="Entrar"
+        name="ENTRAR"
         disabled={ loginDataValidator(email, password) }
         dataTestId="signin-btn"
       />
       { !validUser && <p>Usuário não cadastrado ou senha inválida.</p> }
-      <Link to="/register" data-testid="no-account-btn">Ainda nao tenho conta</Link>
+      <Link to="/register" data-testid="no-account-btn">Ainda não tenho conta</Link>
     </div>
   );
 }
