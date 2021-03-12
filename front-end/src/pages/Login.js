@@ -36,7 +36,7 @@ function Login() {
       />
       <Input
         dataTestId="password-input"
-        name="Password"
+        name="Senha"
         field={ password }
         setField={ setPassword }
         type="password"
