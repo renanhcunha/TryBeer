@@ -32,9 +32,22 @@ const addUser = async (name, email, password, check) => {
   return res;
 };
 
+const updateUserName = async (userName) => {
+  const res = await fetch('http://localhost:3001/user/update', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userName }),
+  }).then((result) => result.json());
+  if (res.message) return false;
+  return res;
+};
+
 const API = {
   getUserData,
   addUser,
+  updateUserName,
 };
 
 module.exports = API;

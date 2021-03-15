@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Checkbox from '../components/Checkbox';
 import Input from '../components/Input';
 import SubmitButton from '../components/SubmitButton';
+import LoginContext from '../context/LoginContext';
 import RegisterContext from '../context/RegisterContext';
 import API from '../services/API';
 import { signupDataValidator } from '../services/dataValidator';
@@ -12,11 +13,13 @@ function Register() {
   const history = useHistory();
   const { name, setName, email, setEmail, check, setCheck } = useContext(RegisterContext);
   const { password, setPassword } = useContext(RegisterContext);
+  const { setUser } = useState(LoginContext);
   const [badReq, setBadReq] = useState(false);
 
   const handleRegister = async () => {
     const user = await API.addUser(name, email, password, check);
     setUserData(user);
+    setUser(user);
     if (user) {
       if (check) {
         history.push('/admin/orders');

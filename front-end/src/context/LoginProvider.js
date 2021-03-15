@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import LoginContext from './LoginContext';
 
 function LoginProvider({ children }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [user, setUser] = useState({});
   const [validUser, setValidUser] = useState(true);
 
   const providerValue = {
-    email,
-    setEmail,
-    password,
-    setPassword,
+    user,
+    setUser,
     validUser,
     setValidUser,
   };

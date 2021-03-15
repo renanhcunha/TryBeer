@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Input({ id, name, field, setField, type = 'text' }) {
+function Input({ id, name, field, setField = null, type = 'text', readOnly = false }) {
   return (
     <form>
       <label htmlFor={ name }>
@@ -12,18 +12,19 @@ function Input({ id, name, field, setField, type = 'text' }) {
           id={ name }
           onChange={ ({ target: { value } }) => setField(value) }
           type={ type }
+          readOnly={ readOnly }
         />
       </label>
     </form>
   );
 }
 
-Input.defaultProps = { type: 'text' };
+Input.defaultProps = { type: 'text', setField: null };
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   field: PropTypes.string.isRequired,
-  setField: PropTypes.func.isRequired,
+  setField: PropTypes.func,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
 };

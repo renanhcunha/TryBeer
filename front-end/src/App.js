@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
 import Register from './pages/Register';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/login" component={ Login } />
             <Route path="/products" component={ Products } />
             <Route path="/register" component={ Register } />
+            <Route path="/profile" component={ Profile } />
             <Redirect from="/" to="/login" />
           </Switch>
         </BrowserRouter>
