@@ -1,9 +1,10 @@
 import React from 'react';
+import TopBar from '../components/TopBar';
 
 function Orders() {
   return (
     <div>
-      <p>Teste</p>
+      <TopBar text="Trybeer" />
     </div>
   );
 }
