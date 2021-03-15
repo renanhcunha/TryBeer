@@ -6,7 +6,7 @@ const ProductsController = new Router();
 const SUCCESS = 200;
 const BAD_REQUEST = 400;
 
-ProductsController.post('/', async (_req, res) => {
+ProductsController.get('/', async (_req, res) => {
   const products = await getProducts();
   
   if (!products) {
