@@ -29,23 +29,23 @@ function Login() {
   return (
     <div>
       <Input
-        dataTestId="email-input"
+        id="email-input"
         name="Email"
         field={ email }
         setField={ setEmail }
       />
       <Input
-        dataTestId="password-input"
+        id="password-input"
         name="Senha"
         field={ password }
         setField={ setPassword }
         type="password"
       />
       <SubmitButton
-        onClickFunction={ () => handleHome(email, password) }
+        onClick={ () => handleHome(email, password) }
         name="ENTRAR"
         disabled={ loginDataValidator(email, password) }
-        dataTestId="signin-btn"
+        id="signin-btn"
       />
       { !validUser && <p>Usuário não cadastrado ou senha inválida.</p> }
       <Link to="/register" data-testid="no-account-btn">Ainda não tenho conta</Link>

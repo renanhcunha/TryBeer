@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Input({ id, name, field, setField, type = 'text' }) {
+function Checkbox({ id, name, field, setField, type = 'checkbox' }) {
   return (
     <form>
       <label htmlFor={ name }>
@@ -10,7 +10,7 @@ function Input({ id, name, field, setField, type = 'text' }) {
           data-testid={ id }
           value={ field }
           id={ name }
-          onChange={ ({ target: { value } }) => setField(value) }
+          onChange={ () => setField(!field) }
           type={ type }
         />
       </label>
@@ -18,14 +18,14 @@ function Input({ id, name, field, setField, type = 'text' }) {
   );
 }
 
-Input.defaultProps = { type: 'text' };
+Checkbox.defaultProps = { type: 'checkbox' };
 
-Input.propTypes = {
+Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
-  field: PropTypes.string.isRequired,
+  field: PropTypes.bool.isRequired,
   setField: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
 };
 
-export default Input;
+export default Checkbox;
