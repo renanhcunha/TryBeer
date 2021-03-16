@@ -38,7 +38,9 @@ function AddBtn({ productName, index, unitPrice }) {
         type="button"
         data-testid={ `${index}-product-plus` }
         onClick={ changeProductQuantity }
-      >+</button>
+      >
+        +
+      </button>
     </div>
   );
 }

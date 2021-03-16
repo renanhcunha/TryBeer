@@ -8,13 +8,14 @@ function RemoveBtn({ productName, index, currentQuantity, unitPrice }) {
 
   const changeProductQuantity = () => {
     const cartItems = getCartItems();
-    
+
     const updatedList = cartItems.reduce((newList, currentProduct) => {
       if (productName === currentProduct.name && currentQuantity > 1) {
         currentProduct.quantity -= 1;
         currentProduct.price = unitPrice * currentProduct.quantity;
         return newList.concat(currentProduct);
-      } else if (productName === currentProduct.name && currentQuantity === 1) return newList;
+      }
+      if (productName === currentProduct.name && currentQuantity === 1) return newList;
       return newList.concat(currentProduct);
     }, []);
     updateCartItemsQty(updatedList);
@@ -27,7 +28,9 @@ function RemoveBtn({ productName, index, currentQuantity, unitPrice }) {
         type="button"
         data-testid={ `${index}-product-minus` }
         onClick={ changeProductQuantity }
-      >-</button>
+      >
+        -
+      </button>
     </div>
   );
 }

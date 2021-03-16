@@ -44,7 +44,7 @@ function Products() {
           />);
         }) }
       </div>
-      <button type="button"  data-testid="checkout-bottom-btn" onClick={ goToCheckout }>
+      <button type="button" data-testid="checkout-bottom-btn" onClick={ goToCheckout }>
         <span data-testid="checkout-bottom-btn-value">
           { `Ver carrinho R$${parseFloat(itemsInCart
             .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2).replace('.', ',')}` }
