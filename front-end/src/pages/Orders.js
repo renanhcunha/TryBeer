@@ -4,7 +4,7 @@ import MenuAndTopBar from '../components/MenuAndTopBar';
 
 function Orders({ location: { pathname } }) {
   return (
-    <MenuAndTopBar pathname={ pathname } text="Meus Pedidos" />
+    <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
   );
 }
 

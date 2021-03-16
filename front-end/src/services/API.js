@@ -1,7 +1,7 @@
 const CONTENT_TYPE = 'application/json';
 
 const getUserData = async (email, password) => {
-  const res = await fetch('http://localhost:3001/login', {
+  const res = await fetch('http://localhost:3001/user/get-data', {
     method: 'POST',
     headers: {
       'Content-Type': CONTENT_TYPE,
@@ -19,7 +19,7 @@ const getUserData = async (email, password) => {
 };
 
 const addUser = async (name, email, password, check) => {
-  const res = await fetch('http://localhost:3001/register', {
+  const res = await fetch('http://localhost:3001/user/create', {
     method: 'POST',
     headers: {
       'Content-Type': CONTENT_TYPE,
@@ -62,11 +62,23 @@ const validateUserToken = async (token) => {
   return true;
 };
 
+const updateUserName = async (name, email) => {
+  const res = await fetch('http://localhost:3001/user/update', {
+    method: 'PUT',
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({ name, email }),
+  }).then((result) => result);
+  return res;
+};
+
 const API = {
   getUserData,
   addUser,
   getProducts,
   validateUserToken,
+  updateUserName,
 };
 
 module.exports = API;

@@ -20,6 +20,7 @@ const getUserToken = () => {
   }
   return false;
 };
+const getUserData = () => JSON.parse(localStorage.getItem('user'));
 
 const logOff = () => (
   localStorage.removeItem('user')
@@ -31,5 +32,6 @@ module.exports = {
   updateCartItemsQty,
   getUserToken,
   setUserData,
+  getUserData,
   logOff,
 };

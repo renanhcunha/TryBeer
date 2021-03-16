@@ -1,22 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Input from '../components/Input';
 import SubmitButton from '../components/SubmitButton';
-import LoginContext from '../context/LoginContext';
+import UserContext from '../context/UserContext';
 import API from '../services/API';
 import { setUserData } from '../services/localStorage';
 import { loginDataValidator } from '../services/dataValidator';
 
 function Login() {
   const history = useHistory();
-  const { email, setEmail, password, setPassword } = useContext(LoginContext);
-  const { validUser, setValidUser } = useContext(LoginContext);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setUser, validUser, setValidUser } = useContext(UserContext);
 
   const handleHome = async (insertedEmail, insertedPassword) => {
     const user = await API.getUserData(insertedEmail, insertedPassword);
 
     if (user) {
       setUserData(user);
+      setUser(user);
       if (user.role === 'administrator') {
         history.push('/admin/orders');
       } else if (user.role === 'client') {
@@ -43,7 +45,7 @@ function Login() {
       />
       <SubmitButton
         onClick={ () => handleHome(email, password) }
-        name="ENTRAR"
+        name="Entrar"
         disabled={ loginDataValidator(email, password) }
         id="signin-btn"
       />
