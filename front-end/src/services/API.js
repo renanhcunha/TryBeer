@@ -1,9 +1,9 @@
+const headers = { 'Content-Type': 'application/json' };
+
 const getUserData = async (email, password) => {
   const res = await fetch('http://localhost:3001/login', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({ email, password }),
   }).then((result) => result.json());
 
@@ -19,9 +19,7 @@ const getUserData = async (email, password) => {
 const addUser = async (name, email, password, check) => {
   const res = await fetch('http://localhost:3001/register', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({
       name,
       email,
@@ -32,15 +30,12 @@ const addUser = async (name, email, password, check) => {
   return res;
 };
 
-const updateUserName = async (userName) => {
-  const res = await fetch('http://localhost:3001/user/update', {
+const updateUserName = async (name, email) => {
+  const res = await fetch('http://localhost:3001/client/update', {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ userName }),
+    headers,
+    body: JSON.stringify({ name, email }),
   }).then((result) => result.json());
-  if (res.message) return false;
   return res;
 };
 

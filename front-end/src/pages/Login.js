@@ -11,14 +11,13 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser } = useContext(LoginContext);
-  const { validUser, setValidUser } = useContext(LoginContext);
+  const { setUser, validUser, setValidUser } = useContext(LoginContext);
 
   const handleHome = async (insertedEmail, insertedPassword) => {
     const user = await API.getUserData(insertedEmail, insertedPassword);
 
     if (user) {
-      setUserData(user.token);
+      setUserData(user);
       setUser(user);
       if (user.role === 'administrator') {
         history.push('/admin/orders');

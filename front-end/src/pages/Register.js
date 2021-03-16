@@ -13,7 +13,7 @@ function Register() {
   const history = useHistory();
   const { name, setName, email, setEmail, check, setCheck } = useContext(RegisterContext);
   const { password, setPassword } = useContext(RegisterContext);
-  const { setUser } = useState(LoginContext);
+  const { setUser } = useContext(LoginContext);
   const [badReq, setBadReq] = useState(false);
 
   const handleRegister = async () => {
