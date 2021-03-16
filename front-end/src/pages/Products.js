@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import MenuAndTopBar from '../components/MenuAndTopBar';
