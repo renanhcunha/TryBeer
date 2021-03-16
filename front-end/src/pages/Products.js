@@ -1,11 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
+import MenuAndTopBar from '../components/MenuAndTopBar';
 import ProductsContext from '../context/ProductsContext';
-import API from '../services/API';
 import { getCartItems, getUserToken } from '../services/localStorage';
+import API from '../services/API';
 
-function Products() {
+function Products({ location: { pathname } }) {
   const history = useHistory();
   const {
     productsList,
@@ -38,6 +39,7 @@ function Products() {
 
   return (
     <div className="container">
+      <MenuAndTopBar text="TryBeer" pathname={ pathname } />
       <div className="row">
         { !isLoading && productsList.map((product, index) => {
           const { name } = product;
@@ -54,5 +56,9 @@ function Products() {
     </div>
   );
 }
+
+Products.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Products;

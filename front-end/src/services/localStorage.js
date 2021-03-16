@@ -21,9 +21,15 @@ const getUserToken = () => {
   return false;
 };
 
+const logOff = () => (
+  localStorage.removeItem('user')
+);
+
 module.exports = {
   setUserData,
   getCartItems,
   updateCartItemsQty,
   getUserToken,
+  setUserData,
+  logOff,
 };
