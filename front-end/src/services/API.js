@@ -49,7 +49,7 @@ const getProducts = async () => {
 
 const validateUserToken = async (token) => {
   if (!token) return false;
-  const validateUser = await fetch('http://localhost:3001/login/decodeToken', {
+  const validateUser = await fetch('http://localhost:3001/user/decodeToken', {
     method: 'POST',
     headers: {
       'Content-Type': CONTENT_TYPE,

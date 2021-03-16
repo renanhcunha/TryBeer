@@ -40,7 +40,7 @@ function Products({ location: { pathname } }) {
 
   return (
     <div className="container">
-      <MenuAndTopBar text="TryBeer" pathname={ pathname } />
+      <MenuAndTopBar title="TryBeer" pathname={ pathname } />
       <div className="row">
         { !isLoading && productsList.map((product, index) => {
           const { name } = product;

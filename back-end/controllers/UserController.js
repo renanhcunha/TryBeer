@@ -51,4 +51,16 @@ UserController.put('/update', async (req, res) => {
   res.status(SUCCESS).send();
 });
 
+UserController.post('/decodeToken', async (req, res) => {
+  const { token } = req.body;
+  const decodedUser = verifyValidToken(token);
+  const registeredUser = await getUserByEmail(decodedUser.email);
+  
+  if (!decodedUser || !registeredUser || decodedUser.password !== registeredUser.password) {
+    return res.status(BAD_REQUEST).json({ message: 'Email ou senha inválidos.' }); 
+  }
+
+  res.status(SUCCESS).json(true);
+});
+
 module.exports = UserController;
