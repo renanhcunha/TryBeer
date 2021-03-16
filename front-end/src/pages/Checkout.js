@@ -58,7 +58,7 @@ function Checkout({ location: { pathname } }) {
     <div>
       <MenuAndTopBar title="Finalizar pedido" pathname={ pathname } />
       <h2 data-testid="top-title">Produtos</h2>
-      { finished && <h1>Pedido finalizado com sucesso</h1> }
+      { finished && <h1>Compra realizada com sucesso!</h1> }
       { itemsInCart.length === 0 ? <p>Não há produtos no carrinho</p>
         : (
           <ul>
@@ -71,14 +71,12 @@ function Checkout({ location: { pathname } }) {
                 <span data-testid={ `${index}-product-name` }>{ product.name }</span>
                 -
                 <span data-testid={ `${index}-product-unit-price` }>
-                  R$
-                  { parseFloat(product.price / product.quantity)
-                    .toFixed(2).replace('.', ',') }
+                  { `(R$ ${parseFloat(product.price / product.quantity)
+                    .toFixed(2).replace('.', ',')} un)` }
                 </span>
                 -
-                <span data-testid={ `${index}-total-value` }>
-                  R$
-                  { parseFloat(product.price).toFixed(2).replace('.', ',') }
+                <span data-testid={ `${index}-product-total-value` }>
+                  { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
                 </span>
                 <button
                   type="button"
