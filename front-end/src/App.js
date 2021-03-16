@@ -12,8 +12,8 @@ function App() {
     <LoginProvider>
       <RegisterProvider>
         <Switch>
-          <Route path="/admin/orders" component={ Orders } />
-          <Route path="orders" component={ Orders } />
+          <Route exact path="/admin/orders" component={ Orders } />
+          <Route exact path="/orders" component={ Orders } />
           <Route path="/login" component={ Login } />
           <Route path="/products" component={ Products } />
           <Route path="/register" component={ Register } />

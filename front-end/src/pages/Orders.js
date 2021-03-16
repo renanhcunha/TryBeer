@@ -1,12 +1,15 @@
 import React from 'react';
-import TopBar from '../components/TopBar';
+import PropTypes from 'prop-types';
+import MenuAndTopBar from '../components/MenuAndTopBar';
 
-function Orders() {
+function Orders({ location: { pathname } }) {
   return (
-    <div>
-      <TopBar text="Trybeer" />
-    </div>
+    <MenuAndTopBar pathname={ pathname } text="Meus Pedidos" />
   );
 }
+
+Orders.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Orders;

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { logOff } from '../services/localStorage';
 
 const MenuOption = ({ idTest, text, route }) => (
-  <Link to={ route } onClick={ text === 'Sair' && logOff() }>
+  <Link to={ route }>
     <div data-testid={ idTest }>
       { text }
     </div>

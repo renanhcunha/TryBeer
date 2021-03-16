@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import SideMenu from './SideMenu';
 import './TopBar.css';
 
-const TopBar = ({ text }) => {
+const TopBar = ({ text, sideMenuOptions }) => {
   const [visibleSide, setVisibleSide] = useState(false);
   return (
     <div className="topBar">
@@ -17,13 +17,14 @@ const TopBar = ({ text }) => {
       <h1 data-testid="top-title">
         { text }
       </h1>
-      { visibleSide && <SideMenu /> }
+      { visibleSide && <SideMenu menuOptions={ sideMenuOptions } /> }
     </div>
   );
 };
 
 TopBar.propTypes = {
   text: PropTypes.string.isRequired,
+  sideMenuOptions: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default TopBar;

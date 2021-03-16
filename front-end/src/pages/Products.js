@@ -1,12 +1,17 @@
 import React from 'react';
-import TopBar from '../components/TopBar';
+import PropTypes from 'prop-types';
+import MenuAndTopBar from '../components/MenuAndTopBar';
 
-function Products() {
+function Products({ location: { pathname } }) {
   return (
     <div>
-      <TopBar text="TryBeer" />
+      <MenuAndTopBar text="TryBeer" pathname={ pathname } />
     </div>
   );
 }
+
+Products.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Products;
