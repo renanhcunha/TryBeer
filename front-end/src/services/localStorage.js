@@ -13,8 +13,17 @@ const updateCartItemsQty = (updatedCartItems) => {
   localStorage.setItem('cart', JSON.stringify(updatedCartItems));
 };
 
+const getUserToken = () => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user) {
+    return user.token;
+  }
+  return false;
+};
+
 module.exports = {
   setUserData,
   getCartItems,
   updateCartItemsQty,
+  getUserToken,
 };

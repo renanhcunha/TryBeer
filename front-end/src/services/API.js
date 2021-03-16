@@ -47,10 +47,26 @@ const getProducts = async () => {
   return res;
 };
 
+const validateUserToken = async (token) => {
+  if (!token) return false;
+  const validateUser = await fetch('http://localhost:3001/login/decodeToken', {
+    method: 'POST',
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({ token }),
+  }).then((result) => result.json());
+
+  if (validateUser.message) return false;
+
+  return true;
+};
+
 const API = {
   getUserData,
   addUser,
   getProducts,
+  validateUserToken,
 };
 
 module.exports = API;

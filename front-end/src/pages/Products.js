@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import ProductsContext from '../context/ProductsContext';
 import API from '../services/API';
-import { getCartItems } from '../services/localStorage';
+import { getCartItems, getUserToken } from '../services/localStorage';
 
 function Products() {
   const history = useHistory();
@@ -20,14 +20,19 @@ function Products() {
     setProductsList(fetchedProductsList);
   };
 
-  const goToCheckout = () => {
-    history.push('/checkout');
+  const goToCheckout = () => history.push('/checkout');
+
+  const checkToken = async () => {
+    const token = getUserToken();
+    const response = await API.validateUserToken(token);
+    if (!response) history.push('login');
   };
 
   useEffect(() => {
     updateProductList();
     setItemsInCart(getCartItems());
     setIsLoading(false);
+    checkToken();
     // eslint-disable-next-line
   }, []);
 
@@ -37,11 +42,7 @@ function Products() {
         { !isLoading && productsList.map((product, index) => {
           const { name } = product;
 
-          return (<ProductCard
-            product={ product }
-            indexNumber={ index }
-            key={ name }
-          />);
+          return (<ProductCard product={ product } indexNumber={ index } key={ name } />);
         }) }
       </div>
       <button type="button" data-testid="checkout-bottom-btn" onClick={ goToCheckout }>
