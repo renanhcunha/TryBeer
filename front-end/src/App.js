@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import LoginProvider from './context/LoginProvider';
 import RegisterProvider from './context/RegisterProvider';
 import Login from './pages/Login';
@@ -11,15 +11,16 @@ function App() {
   return (
     <LoginProvider>
       <RegisterProvider>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/admin/orders" component={ Orders } />
-            <Route path="/login" component={ Login } />
-            <Route path="/products" component={ Products } />
-            <Route path="/register" component={ Register } />
-            <Redirect from="/" to="/login" />
-          </Switch>
-        </BrowserRouter>
+        <Switch>
+          <Route exact path="/admin/orders" component={ Orders } />
+          <Route exact path="/orders" component={ Orders } />
+          <Route path="/login" component={ Login } />
+          <Route path="/products" component={ Products } />
+          <Route path="/register" component={ Register } />
+          <Route exact path="/">
+            <Redirect to="/login" />
+          </Route>
+        </Switch>
       </RegisterProvider>
     </LoginProvider>
   );

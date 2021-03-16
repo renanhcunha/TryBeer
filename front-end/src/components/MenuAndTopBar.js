@@ -1,0 +1,33 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import TopBar from './TopBar';
+import SideMenu from './SideMenu';
+
+const MenuAndTopBar = ({ pathname, text }) => {
+  const adminMenuOptions = [
+    { text: 'Pedidos', route: '/admin/orders', idTest: 'side-menu-item-orders' },
+    { text: 'Perfil', route: '/admin/profile', idTest: 'side-menu-item-profile' },
+  ];
+
+  const clientMenuOptions = [
+    { text: 'Meu Perfil', route: '/profile', idTest: 'side-menu-item-my-profile' },
+    { text: 'Produtos', route: '/products', idTest: 'side-menu-item-products' },
+    { text: 'Meus Pedidos', route: '/orders', idTest: 'side-menu-item-my-orders' },
+  ];
+
+  const isAdmin = pathname.includes('admin');
+
+  return (
+    <div>
+      { isAdmin && <SideMenu menuOptions={ adminMenuOptions } /> }
+      { !isAdmin && <TopBar text={ text } sideMenuOptions={ clientMenuOptions } /> }
+    </div>
+  );
+};
+
+MenuAndTopBar.propTypes = {
+  pathname: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+};
+
+export default MenuAndTopBar;
