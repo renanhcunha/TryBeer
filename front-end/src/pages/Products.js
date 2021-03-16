@@ -18,7 +18,6 @@ function Products({ location: { pathname } }) {
   const [isLoading, setIsLoading] = useState(true);
   const updateProductList = async () => {
     const fetchedProductsList = await API.getProducts();
-
     setProductsList(fetchedProductsList);
   };
 
@@ -28,6 +27,11 @@ function Products({ location: { pathname } }) {
     const token = getUserToken();
     const response = await API.validateUserToken(token);
     if (!response) history.push('login');
+  };
+
+  const handleVisible = () => {
+    if (itemsInCart.length) return false;
+    return true;
   };
 
   useEffect(() => {
@@ -41,6 +45,18 @@ function Products({ location: { pathname } }) {
   return (
     <div className="container">
       <MenuAndTopBar title="TryBeer" pathname={ pathname } />
+      <button
+        type="button"
+        data-testid="checkout-bottom-btn"
+        onClick={ goToCheckout }
+        disabled={ handleVisible() }
+      >
+        Ver Carrinho
+        <span data-testid="checkout-bottom-btn-value">
+          { `R$ ${parseFloat(itemsInCart
+            .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2).replace('.', ',')}` }
+        </span>
+      </button>
       <div className="row">
         { !isLoading && productsList.map((product, index) => {
           const { name } = product;
@@ -48,12 +64,6 @@ function Products({ location: { pathname } }) {
           return (<ProductCard product={ product } indexNumber={ index } key={ name } />);
         }) }
       </div>
-      <button type="button" data-testid="checkout-bottom-btn" onClick={ goToCheckout }>
-        <span data-testid="checkout-bottom-btn-value">
-          { `Ver carrinho R$${parseFloat(itemsInCart
-            .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2).replace('.', ',')}` }
-        </span>
-      </button>
     </div>
   );
 }

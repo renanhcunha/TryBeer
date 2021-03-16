@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const { getUserByEmail, addUser, updateUserName } = require('../models/User');
+const { verifyValidToken } = require('../services/TokenValidator');
 
 const UserController = new Router();
 
