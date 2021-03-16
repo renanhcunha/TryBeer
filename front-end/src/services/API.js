@@ -1,7 +1,7 @@
 const headers = { 'Content-Type': 'application/json' };
 
 const getUserData = async (email, password) => {
-  const res = await fetch('http://localhost:3001/login', {
+  const res = await fetch('http://localhost:3001/user/get-data', {
     method: 'POST',
     headers,
     body: JSON.stringify({ email, password }),
@@ -17,7 +17,7 @@ const getUserData = async (email, password) => {
 };
 
 const addUser = async (name, email, password, check) => {
-  const res = await fetch('http://localhost:3001/register', {
+  const res = await fetch('http://localhost:3001/user/create', {
     method: 'POST',
     headers,
     body: JSON.stringify({
@@ -31,7 +31,7 @@ const addUser = async (name, email, password, check) => {
 };
 
 const updateUserName = async (name, email) => {
-  const res = await fetch('http://localhost:3001/client/update', {
+  const res = await fetch('http://localhost:3001/user/update', {
     method: 'PUT',
     headers,
     body: JSON.stringify({ name, email }),

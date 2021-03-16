@@ -1,15 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import MenuAndTopBar from '../components/MenuAndTopBar';
 
-function Products() {
+function Products({ location: { pathname } }) {
   return (
     <div>
-      <p>Products</p>
-      <Link to="/profile">
-        Profile
-      </Link>
+      <MenuAndTopBar title="TryBeer" pathname={ pathname } />
     </div>
   );
 }
+
+Products.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Products;

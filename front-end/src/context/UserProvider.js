@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import LoginContext from './LoginContext';
+import UserContext from './UserContext';
 
-function LoginProvider({ children }) {
+function UserProvider({ children }) {
   const [user, setUser] = useState({});
   const [validUser, setValidUser] = useState(true);
 
@@ -14,14 +14,14 @@ function LoginProvider({ children }) {
   };
 
   return (
-    <LoginContext.Provider
+    <UserContext.Provider
       value={ providerValue }
     >
       { children }
-    </LoginContext.Provider>
+    </UserContext.Provider>
   );
 }
 
-LoginProvider.propTypes = { children: PropTypes.element.isRequired };
+UserProvider.propTypes = { children: PropTypes.element.isRequired };
 
-export default LoginProvider;
+export default UserProvider;

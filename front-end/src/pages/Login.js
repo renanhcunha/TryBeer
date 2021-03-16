@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import Input from '../components/Input';
 import SubmitButton from '../components/SubmitButton';
-import LoginContext from '../context/LoginContext';
+import UserContext from '../context/UserContext';
 import API from '../services/API';
 import { setUserData } from '../services/localStorage';
 import { loginDataValidator } from '../services/dataValidator';
@@ -11,7 +11,7 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser, validUser, setValidUser } = useContext(LoginContext);
+  const { setUser, validUser, setValidUser } = useContext(UserContext);
 
   const handleHome = async (insertedEmail, insertedPassword) => {
     const user = await API.getUserData(insertedEmail, insertedPassword);

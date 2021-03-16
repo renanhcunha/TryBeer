@@ -1,7 +1,6 @@
 import React from 'react';
-import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
-import LoginProvider from './context/LoginProvider';
-import RegisterProvider from './context/RegisterProvider';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import UserProvider from './context/UserProvider';
 import Login from './pages/Login';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
@@ -10,20 +9,19 @@ import Profile from './pages/Profile';
 
 function App() {
   return (
-    <LoginProvider>
-      <RegisterProvider>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/admin/orders" component={ Orders } />
-            <Route path="/login" component={ Login } />
-            <Route path="/products" component={ Products } />
-            <Route path="/register" component={ Register } />
-            <Route path="/profile" component={ Profile } />
-            <Redirect from="/" to="/login" />
-          </Switch>
-        </BrowserRouter>
-      </RegisterProvider>
-    </LoginProvider>
+    <UserProvider>
+      <Switch>
+        <Route exact path="/admin/orders" component={ Orders } />
+        <Route exact path="/orders" component={ Orders } />
+        <Route path="/login" component={ Login } />
+        <Route path="/products" component={ Products } />
+        <Route path="/register" component={ Register } />
+        <Route path="/profile" component={ Profile } />
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
+      </Switch>
+    </UserProvider>
   );
 }
 
