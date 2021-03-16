@@ -45,7 +45,7 @@ function Login() {
       />
       <SubmitButton
         onClick={ () => handleHome(email, password) }
-        name="ENTRAR"
+        name="Entrar"
         disabled={ loginDataValidator(email, password) }
         id="signin-btn"
       />

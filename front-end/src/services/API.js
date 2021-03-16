@@ -35,7 +35,7 @@ const updateUserName = async (name, email) => {
     method: 'PUT',
     headers,
     body: JSON.stringify({ name, email }),
-  }).then((result) => result.json());
+  }).then((result) => result);
   return res;
 };
 

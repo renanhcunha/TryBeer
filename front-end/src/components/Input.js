@@ -19,7 +19,7 @@ function Input({ id, name, field, setField = null, type = 'text', readOnly = fal
   );
 }
 
-Input.defaultProps = { type: 'text', setField: null };
+Input.defaultProps = { type: 'text', setField: null, readOnly: false };
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
@@ -27,6 +27,7 @@ Input.propTypes = {
   setField: PropTypes.func,
   id: PropTypes.string.isRequired,
   type: PropTypes.string,
+  readOnly: PropTypes.bool,
 };
 
 export default Input;
