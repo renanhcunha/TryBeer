@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TopBar from './TopBar';
 import SideMenu from './SideMenu';
 
-const MenuAndTopBar = ({ pathname, text }) => {
+const MenuAndTopBar = ({ pathname, title }) => {
   const adminMenuOptions = [
     { text: 'Pedidos', route: '/admin/orders', idTest: 'side-menu-item-orders' },
     { text: 'Perfil', route: '/admin/profile', idTest: 'side-menu-item-profile' },
@@ -20,14 +20,14 @@ const MenuAndTopBar = ({ pathname, text }) => {
   return (
     <div>
       { isAdmin && <SideMenu menuOptions={ adminMenuOptions } /> }
-      { !isAdmin && <TopBar text={ text } sideMenuOptions={ clientMenuOptions } /> }
+      { !isAdmin && <TopBar text={ title } sideMenuOptions={ clientMenuOptions } /> }
     </div>
   );
 };
 
 MenuAndTopBar.propTypes = {
   pathname: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default MenuAndTopBar;

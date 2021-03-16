@@ -3,20 +3,24 @@ import { useHistory } from 'react-router-dom';
 import Checkbox from '../components/Checkbox';
 import Input from '../components/Input';
 import SubmitButton from '../components/SubmitButton';
-import RegisterContext from '../context/RegisterContext';
+import UserContext from '../context/UserContext';
 import API from '../services/API';
 import { signupDataValidator } from '../services/dataValidator';
 import { setUserData } from '../services/localStorage';
 
 function Register() {
   const history = useHistory();
-  const { name, setName, email, setEmail, check, setCheck } = useContext(RegisterContext);
-  const { password, setPassword } = useContext(RegisterContext);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [check, setCheck] = useState(false);
+  const { setUser } = useContext(UserContext);
   const [badReq, setBadReq] = useState(false);
 
   const handleRegister = async () => {
     const user = await API.addUser(name, email, password, check);
     setUserData(user);
+    setUser(user);
     if (user) {
       if (check) {
         history.push('/admin/orders');
@@ -39,7 +43,7 @@ function Register() {
       />
       <Checkbox
         id="signup-seller"
-        name="Quero Vender"
+        name="Quero vender"
         field={ check }
         setField={ setCheck }
       />

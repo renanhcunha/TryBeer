@@ -5,7 +5,7 @@ import MenuAndTopBar from '../components/MenuAndTopBar';
 function Products({ location: { pathname } }) {
   return (
     <div>
-      <MenuAndTopBar text="TryBeer" pathname={ pathname } />
+      <MenuAndTopBar title="TryBeer" pathname={ pathname } />
     </div>
   );
 }

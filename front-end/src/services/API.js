@@ -1,9 +1,9 @@
+const headers = { 'Content-Type': 'application/json' };
+
 const getUserData = async (email, password) => {
-  const res = await fetch('http://localhost:3001/login', {
+  const res = await fetch('http://localhost:3001/user/get-data', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({ email, password }),
   }).then((result) => result.json());
 
@@ -17,11 +17,9 @@ const getUserData = async (email, password) => {
 };
 
 const addUser = async (name, email, password, check) => {
-  const res = await fetch('http://localhost:3001/register', {
+  const res = await fetch('http://localhost:3001/user/create', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify({
       name,
       email,
@@ -32,9 +30,19 @@ const addUser = async (name, email, password, check) => {
   return res;
 };
 
+const updateUserName = async (name, email) => {
+  const res = await fetch('http://localhost:3001/user/update', {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify({ name, email }),
+  }).then((result) => result);
+  return res;
+};
+
 const API = {
   getUserData,
   addUser,
+  updateUserName,
 };
 
 module.exports = API;
