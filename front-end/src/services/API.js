@@ -1,9 +1,11 @@
-const headers = { 'Content-Type': 'application/json' };
+const CONTENT_TYPE = 'application/json';
 
 const getUserData = async (email, password) => {
   const res = await fetch('http://localhost:3001/user/get-data', {
     method: 'POST',
-    headers,
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
     body: JSON.stringify({ email, password }),
   }).then((result) => result.json());
 
@@ -19,7 +21,9 @@ const getUserData = async (email, password) => {
 const addUser = async (name, email, password, check) => {
   const res = await fetch('http://localhost:3001/user/create', {
     method: 'POST',
-    headers,
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
     body: JSON.stringify({
       name,
       email,
@@ -30,10 +34,40 @@ const addUser = async (name, email, password, check) => {
   return res;
 };
 
+const getProducts = async () => {
+  const res = await fetch('http://localhost:3001/products', {
+    method: 'GET',
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
+  }).then((result) => result.json());
+
+  if (res.message) return false;
+
+  return res;
+};
+
+const validateUserToken = async (token) => {
+  if (!token) return false;
+  const validateUser = await fetch('http://localhost:3001/user/decodeToken', {
+    method: 'POST',
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({ token }),
+  }).then((result) => result.json());
+
+  if (validateUser.message) return false;
+
+  return true;
+};
+
 const updateUserName = async (name, email) => {
   const res = await fetch('http://localhost:3001/user/update', {
     method: 'PUT',
-    headers,
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
     body: JSON.stringify({ name, email }),
   }).then((result) => result);
   return res;
@@ -42,6 +76,8 @@ const updateUserName = async (name, email) => {
 const API = {
   getUserData,
   addUser,
+  getProducts,
+  validateUserToken,
   updateUserName,
 };
 

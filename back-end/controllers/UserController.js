@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');
 const { getUserByEmail, addUser, updateUserName } = require('../models/User');
+const { verifyValidToken } = require('../services/TokenValidator');
 
 const UserController = new Router();
 
@@ -49,6 +50,18 @@ UserController.put('/update', async (req, res) => {
   await updateUserName(name, email);
   
   res.status(SUCCESS).send();
+});
+
+UserController.post('/decodeToken', async (req, res) => {
+  const { token } = req.body;
+  const decodedUser = verifyValidToken(token);
+  const registeredUser = await getUserByEmail(decodedUser.email);
+  
+  if (!decodedUser || !registeredUser || decodedUser.password !== registeredUser.password) {
+    return res.status(BAD_REQUEST).json({ message: 'Email ou senha inválidos.' }); 
+  }
+
+  res.status(SUCCESS).json(true);
 });
 
 module.exports = UserController;
