@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Orders from './pages/Orders';
 import Products from './pages/Products';
 import Register from './pages/Register';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/login" component={ Login } />
               <Route path="/products" component={ Products } />
               <Route path="/register" component={ Register } />
+              <Route path="/checkout" component={ Checkout } />
               <Redirect from="/" to="/login" />
             </Switch>
           </BrowserRouter>
