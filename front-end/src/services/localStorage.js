@@ -27,6 +27,10 @@ const logOff = () => (
   localStorage.removeItem('user')
 );
 
+const clearCart = () => {
+  localStorage.setItem('cart', JSON.stringify([]));
+};
+
 module.exports = {
   setUserData,
   getCartItems,
@@ -34,4 +38,5 @@ module.exports = {
   getUserToken,
   getUserData,
   logOff,
+  clearCart,
 };
