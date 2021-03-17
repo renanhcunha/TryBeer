@@ -35,10 +35,10 @@ function Products({ location: { pathname } }) {
   };
 
   useEffect(() => {
+    checkToken();
     updateProductList();
     setItemsInCart(getCartItems());
     setIsLoading(false);
-    checkToken();
     // eslint-disable-next-line
   }, []);
 

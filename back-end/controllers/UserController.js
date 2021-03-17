@@ -33,12 +33,13 @@ UserController.post('/create', async (req, res) => {
   if (alreadyExists) {
     return res.status(BAD_REQUEST).json({ message: 'Email já cadastrado.' }); 
   }
-  await addUser(name, email, password, role);
+  const userId = await addUser(name, email, password, role);
   const user = {
     name,
     email,
     token,
     role,
+    id: userId,
   };
   
   res.status(CREATED).json(user);

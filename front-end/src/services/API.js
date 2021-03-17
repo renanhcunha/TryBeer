@@ -1,6 +1,6 @@
 const CONTENT_TYPE = 'application/json';
 
-const getUserData = async (email, password) => {
+const createToken = async (email, password) => {
   const res = await fetch('http://localhost:3001/user/get-data', {
     method: 'POST',
     headers: {
@@ -11,9 +11,9 @@ const getUserData = async (email, password) => {
 
   if (res.message) return false;
 
-  const { name, email: fetchedEmail, role } = res.user;
+  const { name, email: fetchedEmail, role, id } = res.user;
   const { token } = res;
-  const formattedUser = { name, email: fetchedEmail, token, role };
+  const formattedUser = { name, email: fetchedEmail, token, role, id };
 
   return formattedUser;
 };
@@ -73,12 +73,33 @@ const updateUserName = async (name, email) => {
   return res;
 };
 
+const addProductId = (cart, productList) => {
+  const cartWithId = cart.map((product) => {
+    product.productId = productList
+      .find((productInList) => productInList.name === product.name).id;
+    return product;
+  });
+  return cartWithId;
+};
+
+const sendOrder = async (cart, user, productList) => {
+  const cartWithId = addProductId(cart, productList);
+  await fetch('http://localhost:3001/orders/addOrder', {
+    method: 'POST',
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
+    body: JSON.stringify({ cartWithId, user }),
+  });
+};
+
 const API = {
-  getUserData,
+  createToken,
   addUser,
   getProducts,
   validateUserToken,
   updateUserName,
+  sendOrder,
 };
 
 module.exports = API;
