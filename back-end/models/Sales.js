@@ -4,7 +4,7 @@ const connection = require('./connection');
 
 
 const getSales = async (userId) => {
-  const [sales] = await connection.execute('SELECT * FROM sales WHERE user_id=?', [userId]);
+  const [sales] = await connection.execute('SELECT * FROM sales WHERE user_id=? ORDER BY id', [userId]);
   const formattedSales = sales.map(({
     delivery_address,
     delivery_number,

@@ -5,7 +5,6 @@ import OrderCard from '../components/OrderCard';
 import { getSales } from '../services/API';
 
 function Orders({ location: { pathname } }) {
-
   const [orders, setOrders] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   useEffect(() => {
@@ -19,7 +18,7 @@ function Orders({ location: { pathname } }) {
   return (
     <div>
       <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
-      { orders.map((order, index) => <OrderCard order={ order } index={ index } />) }
+      { orders.map((order, index) => <OrderCard key={ order.orderId } order={ order } index={ index } />) }
     </div>
   );
 }
