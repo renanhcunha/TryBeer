@@ -11,9 +11,9 @@ const getUserData = async (email, password) => {
 
   if (res.message) return false;
 
-  const { name, email: fetchedEmail, role } = res.user;
+  const { name, email: fetchedEmail, role, id } = res.user;
   const { token } = res;
-  const formattedUser = { name, email: fetchedEmail, token, role };
+  const formattedUser = { name, email: fetchedEmail, token, role, id };
 
   return formattedUser;
 };
@@ -73,12 +73,22 @@ const updateUserName = async (name, email) => {
   return res;
 };
 
+const getSales = async (id) => {
+  const res = await fetch(`http://localhost:3001/sales/${id}`)
+    .then((result) => result.json());
+
+  if (res.message) return [];
+
+  return res;
+};
+
 const API = {
   getUserData,
   addUser,
   getProducts,
   validateUserToken,
   updateUserName,
+  getSales,
 };
 
 module.exports = API;
