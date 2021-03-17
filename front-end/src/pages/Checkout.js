@@ -1,11 +1,125 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import Input from '../components/Input';
+import SubmitButton from '../components/SubmitButton';
+import ProductsContext from '../context/ProductsContext';
+import MenuAndTopBar from '../components/MenuAndTopBar';
+import {
+  updateCartItemsQty,
+  getCartItems,
+  getUserToken,
+  clearCart,
+} from '../services/localStorage';
+import API from '../services/API';
 
-function Checkout() {
+function Checkout({ location: { pathname } }) {
+  const history = useHistory();
+  const { itemsInCart, setItemsInCart } = useContext(ProductsContext);
+  const [finished, setFinished] = useState(false);
+  const [street, setStreet] = useState('');
+  const [houseNumber, setHouseNumber] = useState('');
+
+  const deleteItem = (product) => {
+    const cartItems = getCartItems();
+    const updatedList = cartItems.reduce((newList, currentProduct) => {
+      if (product.name === currentProduct.name) {
+        return newList;
+      }
+      return newList.concat(currentProduct);
+    }, []);
+    updateCartItemsQty(updatedList);
+    setItemsInCart(updatedList);
+  };
+
+  const checkToken = async () => {
+    const token = getUserToken();
+    const response = await API.validateUserToken(token);
+    if (!response) history.push('login');
+  };
+
+  const handleFinishOrder = () => {
+    const TIME_OUT = 2000;
+    setFinished(true);
+    setTimeout(() => {
+      history.push('/products');
+      clearCart();
+      setItemsInCart([]);
+    }, TIME_OUT);
+  };
+
+  useEffect(() => {
+    setItemsInCart(getCartItems());
+    checkToken();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div>
-      <p>Teste</p>
+      <MenuAndTopBar title="Finalizar pedido" pathname={ pathname } />
+      <h2 data-testid="top-title">Produtos</h2>
+      { finished && <h1>Compra realizada com sucesso!</h1> }
+      { itemsInCart.length === 0 ? <p>Não há produtos no carrinho</p>
+        : (
+          <ul>
+            { itemsInCart.map((product, index) => (
+              <li key={ product.name }>
+                <span data-testid={ `${index}-product-qtd-input` }>
+                  { product.quantity }
+                </span>
+                -
+                <span data-testid={ `${index}-product-name` }>{ product.name }</span>
+                -
+                <span data-testid={ `${index}-product-unit-price` }>
+                  { `(R$ ${parseFloat(product.price / product.quantity)
+                    .toFixed(2).replace('.', ',')} un)` }
+                </span>
+                -
+                <span data-testid={ `${index}-product-total-value` }>
+                  { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
+                </span>
+                <button
+                  type="button"
+                  onClick={ () => deleteItem(product) }
+                  data-testid={ `${index}-removal-button` }
+                >
+                  X
+                </button>
+              </li>
+            )) }
+          </ul>
+        ) }
+      <h1 data-testid="order-total-value">
+        { `Total: R$ ${parseFloat(itemsInCart
+          .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2).replace('.', ',')}.` }
+      </h1>
+      <form>
+        <h1>Endereço</h1>
+        <Input
+          id="checkout-street-input"
+          name="Rua:"
+          field={ street }
+          setField={ setStreet }
+        />
+        <Input
+          id="checkout-house-number-input"
+          name="Número da casa:"
+          field={ houseNumber }
+          setField={ setHouseNumber }
+        />
+      </form>
+      <SubmitButton
+        onClick={ handleFinishOrder }
+        name="Finalizar Pedido"
+        disabled={ itemsInCart.length === 0 || !street || !houseNumber }
+        id="checkout-finish-btn"
+      />
     </div>
   );
 }
+
+Checkout.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Checkout;
