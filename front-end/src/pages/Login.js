@@ -14,7 +14,7 @@ function Login() {
   const { setUser, validUser, setValidUser } = useContext(UserContext);
 
   const handleHome = async (insertedEmail, insertedPassword) => {
-    const user = await API.getUserData(insertedEmail, insertedPassword);
+    const user = await API.createToken(insertedEmail, insertedPassword);
 
     if (user) {
       setUserData(user);

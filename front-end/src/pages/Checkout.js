@@ -9,13 +9,14 @@ import {
   updateCartItemsQty,
   getCartItems,
   getUserToken,
+  getUserData,
   clearCart,
 } from '../services/localStorage';
 import API from '../services/API';
 
 function Checkout({ location: { pathname } }) {
   const history = useHistory();
-  const { itemsInCart, setItemsInCart } = useContext(ProductsContext);
+  const { itemsInCart, setItemsInCart, productsList } = useContext(ProductsContext);
   const [finished, setFinished] = useState(false);
   const [street, setStreet] = useState('');
   const [houseNumber, setHouseNumber] = useState('');
@@ -41,10 +42,14 @@ function Checkout({ location: { pathname } }) {
   const handleFinishOrder = () => {
     const TIME_OUT = 2000;
     setFinished(true);
+    const userInfo = getUserData();
+    userInfo.deliveryNumber = houseNumber;
+    userInfo.deliveryAddress = street;
+    API.sendOrder(itemsInCart, userInfo, productsList);
     setTimeout(() => {
-      history.push('/products');
       clearCart();
       setItemsInCart([]);
+      history.push('/products');
     }, TIME_OUT);
   };
 

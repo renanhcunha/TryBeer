@@ -7,10 +7,12 @@ const getUserByEmail = async (email) => {
 };
 
 const addUser = async (name, email, password, role) => {
-  await connection.execute(
+  const [{ insertId }] = await connection.execute(
     'INSERT INTO users (name, email, password, role) VALUES(?, ?, ?, ?) ',
     [name, email, password, role],
   );
+
+  return insertId;
 };
 
 const updateUserName = async (name, email) => {
