@@ -19,6 +19,7 @@ function App() {
           <Route exact path="/orders" component={ Orders } />
           <Route exact path="/admin/orders/:id" component={ OrderDetails } />
           <Route exact path="/orders/:id" component={ OrderDetails } />
+          <Route path="/admin/profile" component={ Profile } />
           <Route path="/login" component={ Login } />
           <Route path="/products" component={ Products } />
           <Route path="/register" component={ Register } />
