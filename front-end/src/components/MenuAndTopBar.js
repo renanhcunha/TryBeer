@@ -20,7 +20,13 @@ const MenuAndTopBar = ({ pathname, title }) => {
   return (
     <div>
       { isAdmin && <SideMenu menuOptions={ adminMenuOptions } /> }
-      { !isAdmin && <TopBar text={ title } sideMenuOptions={ clientMenuOptions } /> }
+      { !isAdmin && (
+        <TopBar
+          text={ title }
+          sideMenuOptions={ clientMenuOptions }
+          isAdmin={ isAdmin }
+        />
+      ) }
     </div>
   );
 };
