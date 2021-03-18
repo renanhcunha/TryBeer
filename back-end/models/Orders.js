@@ -51,9 +51,18 @@ const getAllOrders = async () => {
   return salesFormatter(sales);
 };
 
+const getOrderProductsById = async (id) => {
+  const [orderProducts] = await connection.execute(`SELECT * FROM sales_products INNER 
+  JOIN products ON sales_products.product_id = products.id INNER JOIN sales ON 
+  sales_products.sale_id = sales.id WHERE sale_id = ?`, [id]);
+  
+  return orderProducts;
+};
+
 module.exports = {
   saveOrder,
   saveOrderItems,
   getOrdersByUserId,
   getAllOrders,
+  getOrderProductsById,
 };

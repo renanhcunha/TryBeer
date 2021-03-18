@@ -1,5 +1,11 @@
 const { Router } = require('express');
-const { saveOrder, saveOrderItems, getOrdersByUserId, getAllOrders } = require('../models/Orders');
+const {
+  saveOrder,
+  saveOrderItems,
+  getOrdersByUserId,
+  getAllOrders,
+  getOrderProductsById,
+} = require('../models/Orders');
 
 const OrdersController = new Router();
 const SUCCESS = 200;
@@ -46,6 +52,18 @@ OrdersController.get('/:userId', async (req, res) => {
   }
 
   res.status(SUCCESS).json(orders);
+});
+
+OrdersController.get('/products/:orderId', async (req, res) => {
+  const { orderId } = req.params;
+
+  const orderProducts = await getOrderProductsById(orderId);
+  
+  if (!orderProducts) {
+    return res.status(BAD_REQUEST).json({ message: 'Pedido não existe.' }); 
+  }
+
+  res.status(SUCCESS).json(orderProducts);
 });
 
 module.exports = OrdersController;
