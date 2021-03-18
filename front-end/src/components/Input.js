@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function Input({ id, name, field, setField = null, type = 'text', readOnly = false }) {
   return (
-    <form>
+    <div>
       <label htmlFor={ name }>
         {name}
         <input
@@ -15,7 +15,7 @@ function Input({ id, name, field, setField = null, type = 'text', readOnly = fal
           readOnly={ readOnly }
         />
       </label>
-    </form>
+    </div>
   );
 }
 
