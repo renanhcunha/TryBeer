@@ -33,15 +33,13 @@ function AddBtn({ productName, index, unitPrice }) {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        data-testid={ `${index}-product-plus` }
-        onClick={ changeProductQuantity }
-      >
-        +
-      </button>
-    </div>
+    <button
+      type="button"
+      data-testid={ `${index}-product-plus` }
+      onClick={ changeProductQuantity }
+    >
+      +
+    </button>
   );
 }
 

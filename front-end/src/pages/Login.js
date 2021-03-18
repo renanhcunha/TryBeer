@@ -6,6 +6,7 @@ import UserContext from '../context/UserContext';
 import API from '../services/API';
 import { setUserData } from '../services/localStorage';
 import { loginDataValidator } from '../services/dataValidator';
+import '../styles/pages/Login.css';
 
 function Login() {
   const history = useHistory();
@@ -29,7 +30,7 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="loginContainer">
       <Input
         id="email-input"
         name="Email"

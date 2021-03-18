@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from './SideMenu';
-import './TopBar.css';
+import '../styles/components/TopBar.css';
 
 const TopBar = ({ text, sideMenuOptions }) => {
   const [visibleSide, setVisibleSide] = useState(false);
