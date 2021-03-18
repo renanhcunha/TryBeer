@@ -73,6 +73,22 @@ const updateUserName = async (name, email) => {
   return res;
 };
 
+const getOrdersByUserId = async (id) => {
+  const res = await fetch(`http://localhost:3001/orders/${id}`)
+    .then((result) => result.json());
+
+  if (res.message) return [];
+  return res;
+};
+
+const getAllOrders = async () => {
+  const res = await fetch('http://localhost:3001/orders/all')
+    .then((result) => result.json());
+
+  if (res.message) return [];
+  return res;
+};
+
 const addProductId = (cart, productList) => {
   const cartWithId = cart.map((product) => {
     product.productId = productList
@@ -99,7 +115,9 @@ const API = {
   getProducts,
   validateUserToken,
   updateUserName,
+  getOrdersByUserId,
   sendOrder,
+  getAllOrders,
 };
 
 module.exports = API;
