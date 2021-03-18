@@ -34,7 +34,7 @@ OrdersController.get('/all', async (req, res) => {
   }
 
   res.status(SUCCESS).json(orders);
-})
+});
 
 OrdersController.get('/:userId', async (req, res) => {
   const { userId } = req.params;

@@ -78,19 +78,15 @@ const getOrdersByUserId = async (id) => {
     .then((result) => result.json());
 
   if (res.message) return [];
-  console.log(res)
   return res;
-
 };
 
-const getAllOrders = async (id) => {
-  const res = await fetch(`http://localhost:3001/orders/all`)
+const getAllOrders = async () => {
+  const res = await fetch('http://localhost:3001/orders/all')
     .then((result) => result.json());
 
   if (res.message) return [];
-  console.log(res)
   return res;
-
 };
 
 const addProductId = (cart, productList) => {

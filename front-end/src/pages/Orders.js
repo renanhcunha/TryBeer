@@ -9,24 +9,32 @@ function Orders({ location: { pathname } }) {
   const [orders, setOrders] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const isAdmin = pathname.includes('admin');
-  useEffect(() => {
-    if(user && isAdmin) {
-      return getAllOrders().then((result) => setOrders(result));
-    }
-    if(user) {
-      return getOrdersByUserId(user.id).then((result) => setOrders(result));
-    }
-  }, []);
-  if(!user) return <Redirect to={ '/login' } />
-  if(orders.length === 0) return (
-    <div>
-      <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
-    </div>
+  const allOrdersAdm = () => (
+    getAllOrders().then((result) => setOrders(result))
   );
+  const ordersById = () => (
+    getOrdersByUserId(user.id).then((result) => setOrders(result))
+  );
+  useEffect(() => {
+    if (user && isAdmin) allOrdersAdm();
+    if (user && !isAdmin) ordersById();
+  }, []);
+  if (!user) return <Redirect to="/login" />;
+  if (orders.length === 0) {
+    return (
+      <div>
+        <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
+      </div>
+    );
+  }
   return (
     <div>
       <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
-      { orders.map((order, index) => <OrderCard key={ order.orderId } order={ order } index={ index } />) }
+      { orders.map((order, index) => (<OrderCard
+        key={ order.orderId }
+        order={ order }
+        index={ index }
+      />)) }
     </div>
   );
 }
