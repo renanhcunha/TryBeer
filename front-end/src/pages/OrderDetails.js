@@ -17,7 +17,11 @@ function OrderDetails({ location: { pathname } }) {
   const orderById = async () => {
     const order = await API.getOrderProducts(id);
     setCurrentOrder(order);
-    setDelivered(order[0].status === 'Entregue');
+    if (order.length > 0) {
+      setDelivered(order[0].status === 'Entregue');
+    } else {
+      setDelivered(false);
+    }
   };
 
   const checkToken = async () => {
@@ -34,7 +38,6 @@ function OrderDetails({ location: { pathname } }) {
   useEffect(() => {
     checkToken();
     orderById();
-    setDelivered();
     // eslint-disable-next-line
   }, []);
 
@@ -45,7 +48,7 @@ function OrderDetails({ location: { pathname } }) {
 
   return (
     <div>
-      { currentOrder && (
+      { (currentOrder.length > 0) && (
         <div>
           <MenuAndTopBar title="Cliente - Detalhes do Pedido" pathname={ pathname } />
           <h1 data-testid="order-number">
@@ -62,7 +65,12 @@ function OrderDetails({ location: { pathname } }) {
           ) }
           <ul>
             { currentOrder.map((product, index) => (
-              <OrderDetailCard product={ product } index={ index } key={ product.name } />
+              <OrderDetailCard
+                product={ product }
+                index={ index }
+                isAdmin={ isAdmin }
+                key={ product.name }
+              />
             )) }
           </ul>
           <h1 data-testid="order-total-value">

@@ -52,9 +52,9 @@ const getAllOrders = async () => {
 };
 
 const getOrderProductsById = async (orderId) => {
-  const [orderProducts] = await connection.execute(`SELECT * FROM sales_products INNER 
-  JOIN products ON sales_products.product_id = products.id INNER JOIN sales ON 
-  sales_products.sale_id = sales.id WHERE sale_id = ?`, [orderId]);
+  const [orderProducts] = await connection.execute(`SELECT * FROM sales_products 
+  INNER JOIN products ON sales_products.product_id = products.id 
+  INNER JOIN sales ON sales_products.sale_id = sales.id WHERE sale_id = ?`, [orderId]);
 
   const formattedOrder = orderProducts.map(({
     id, name, price, status, quantity,
