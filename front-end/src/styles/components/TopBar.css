@@ -6,3 +6,7 @@
   height: 10vh;
   background-color: gray;
 }
+
+.topBarMargin {
+  padding-bottom: 10vh;
+}

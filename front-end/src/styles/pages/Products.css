@@ -26,13 +26,17 @@
   transition: background-color 0.2s;
 }
 
-.checkoutBtn button:hover {
+.checkoutBtn:hover:not([disabled]) {
   background-color: rgba(0, 128, 128, 0.7);
   cursor: pointer;
 }
 
+.checkoutBtn:disabled, .checkoutBtn:disabled:hover {
+  opacity: 0.2;
+  cursor: auto;
+}
+
 .productsContainer {
-  margin: 10vh 0;
   display: flex;
   flex-wrap: wrap;
 }
