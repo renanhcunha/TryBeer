@@ -5,6 +5,7 @@ const {
   getOrdersByUserId,
   getAllOrders,
   getOrderProductsById,
+  changeStatus,
 } = require('../models/Orders');
 
 const OrdersController = new Router();
@@ -30,6 +31,7 @@ OrdersController.post('/addOrder', async (req, res) => {
   await cartWithId.forEach(async ({ productId, quantity }) => {
     await saveOrderItems(saleId, productId, quantity);
   });
+  res.status(SUCCESS);
 });
 
 OrdersController.get('/all', async (req, res) => {
@@ -64,6 +66,14 @@ OrdersController.get('/products/:orderId', async (req, res) => {
   }
 
   res.status(SUCCESS).json(orderProducts);
+});
+
+OrdersController.put('/changeStatus/:id', async (req, res) => {
+  const { id } = req.params;
+ 
+  await changeStatus(id);
+  
+  res.status(SUCCESS);
 });
 
 module.exports = OrdersController;

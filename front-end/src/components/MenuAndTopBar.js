@@ -13,6 +13,7 @@ const MenuAndTopBar = ({ pathname, title }) => {
     { text: 'Meu Perfil', route: '/profile', idTest: 'side-menu-item-my-profile' },
     { text: 'Produtos', route: '/products', idTest: 'side-menu-item-products' },
     { text: 'Meus Pedidos', route: '/orders', idTest: 'side-menu-item-my-orders' },
+    { text: 'Detalhes de Pedido', route: '/orders/:id', idTest: 'side-order-details' },
   ];
 
   const isAdmin = pathname.includes('admin');

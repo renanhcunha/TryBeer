@@ -110,11 +110,20 @@ const sendOrder = async (cart, user, productList) => {
 };
 
 const getOrderProducts = async (id) => {
-  const response = await fetch(`http://localhost:3001/orders//products/${id}`)
-  .then((result) => result.json());
+  const response = await fetch(`http://localhost:3001/orders/products/${id}`)
+    .then((result) => result.json());
 
   if (response.message) return [];
   return response;
+};
+
+const changeStatus = async (id) => {
+  await fetch(`http://localhost:3001/orders/changeStatus/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': CONTENT_TYPE,
+    },
+  });
 };
 
 const API = {
@@ -127,6 +136,7 @@ const API = {
   sendOrder,
   getAllOrders,
   getOrderProducts,
+  changeStatus,
 };
 
 module.exports = API;

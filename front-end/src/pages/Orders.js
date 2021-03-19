@@ -19,6 +19,7 @@ function Orders({ location: { pathname } }) {
   useEffect(() => {
     if (user && isAdmin) allOrdersAdm();
     if (user && !isAdmin) ordersById();
+    // eslint-disable-next-line
   }, []);
   if (!user) return <Redirect to="/login" />;
   if (orders.length === 0) {
