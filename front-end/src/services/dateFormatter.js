@@ -1,9 +1,9 @@
 const dateFormatter = (date) => {
-  console.log(date);
-  const localDate = new Date(date).toLocaleDateString();
-  console.log(localDate);
-  const dayMonthYear = localDate.split('/');
-  return `${dayMonthYear[0]}/${dayMonthYear[1]}`;
+  const dateMinusTime = date.split('T')[0];
+  const dayMonthYear = dateMinusTime.split('-');
+  // const localDate = new Date(date).toLocaleDateString();
+  // const dayMonthYear = localDate.split('/');
+  return `${dayMonthYear[2]}/${dayMonthYear[1]}`;
 };
 
 export default dateFormatter;
