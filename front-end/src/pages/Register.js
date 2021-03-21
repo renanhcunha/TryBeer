@@ -7,6 +7,7 @@ import UserContext from '../context/UserContext';
 import API from '../services/API';
 import { signupDataValidator } from '../services/dataValidator';
 import { setUserData } from '../services/localStorage';
+import '../styles/pages/Register.css';
 
 function Register() {
   const history = useHistory();
@@ -31,7 +32,8 @@ function Register() {
   };
 
   return (
-    <div>
+    <div className="registerContainer">
+      <h2>Registro</h2>
       <Input id="signup-name" name="Nome" field={ name } setField={ setName } />
       <Input id="signup-email" name="Email" field={ email } setField={ setEmail } />
       <Input

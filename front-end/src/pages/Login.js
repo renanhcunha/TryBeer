@@ -12,12 +12,14 @@ function Login() {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUser, validUser, setValidUser } = useContext(UserContext);
+  const [validUser, setValidUser] = useState(true);
+  const { setUser } = useContext(UserContext);
 
   const handleHome = async (insertedEmail, insertedPassword) => {
     const user = await API.createToken(insertedEmail, insertedPassword);
 
     if (user) {
+      setValidUser(true);
       setUserData(user);
       setUser(user);
       if (user.role === 'administrator') {

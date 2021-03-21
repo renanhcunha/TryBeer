@@ -1,5 +1,12 @@
 const { Router } = require('express');
-const { saveOrder, saveOrderItems, getOrdersByUserId, getAllOrders } = require('../models/Orders');
+const {
+  saveOrder,
+  saveOrderItems,
+  getOrdersByUserId,
+  getAllOrders,
+  getOrderProductsById,
+  changeStatus,
+} = require('../models/Orders');
 
 const OrdersController = new Router();
 const SUCCESS = 200;
@@ -24,6 +31,7 @@ OrdersController.post('/addOrder', async (req, res) => {
   await cartWithId.forEach(async ({ productId, quantity }) => {
     await saveOrderItems(saleId, productId, quantity);
   });
+  res.status(SUCCESS);
 });
 
 OrdersController.get('/all', async (req, res) => {
@@ -46,6 +54,26 @@ OrdersController.get('/:userId', async (req, res) => {
   }
 
   res.status(SUCCESS).json(orders);
+});
+
+OrdersController.get('/products/:orderId', async (req, res) => {
+  const { orderId } = req.params;
+
+  const orderProducts = await getOrderProductsById(orderId);
+  
+  if (!orderProducts) {
+    return res.status(BAD_REQUEST).json({ message: 'Pedido não existe.' }); 
+  }
+
+  res.status(SUCCESS).json(orderProducts);
+});
+
+OrdersController.put('/changeStatus/:id', async (req, res) => {
+  const { id } = req.params;
+ 
+  await changeStatus(id);
+  
+  res.status(SUCCESS);
 });
 
 module.exports = OrdersController;

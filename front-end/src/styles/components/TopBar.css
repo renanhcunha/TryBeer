@@ -1,12 +1,96 @@
-.topBar {
+.topTitleContainer {
   width: 100%;
   position: fixed;
   margin-top: 0;
   text-align: center;
   height: 10vh;
   background-color: gray;
+  color: white;
+
+  display: flex;
+  align-items: center;
+}
+
+.topTitleContainer > h1 {
+  margin: 0 auto;
 }
 
 .topBarMargin {
   padding-bottom: 10vh;
+}
+
+.sideMenuOff {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}
+
+.sideMenuOn {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}
+
+.hamburguerContainer {
+  width: 40px;
+  height: 10vh;
+  margin-left: 100px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hamburguerContainer:focus-within {
+  outline: none;
+  border: none;
+}
+
+.hamburguerContainer > button {
+  border: none;
+  background-color: transparent;
+}
+
+.side-menu-container {
+  background-color: gray;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.side-menu-container a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: white;
+}
+
+.side-menu-container a > div {
+  margin: 10px 20px;
+  padding: 10px;
+}
+
+.side-menu-container a > div:hover {
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color: rgb(128, 128, 128, 0.7);
+  opacity: 0.5;
+}
+
+.side-menu-container a > button {
+  width: 5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.side-menu-container a > button:hover {
+  cursor: pointer;
+  background-color: rgb(255, 0, 0, 0.6);
+  color: white;
+  font-weight: 600;
 }

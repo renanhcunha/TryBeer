@@ -13,6 +13,7 @@ import {
   clearCart,
 } from '../services/localStorage';
 import API from '../services/API';
+import '../styles/pages/Checkout.css';
 
 function Checkout({ location: { pathname } }) {
   const history = useHistory();
@@ -62,63 +63,68 @@ function Checkout({ location: { pathname } }) {
   return (
     <div>
       <MenuAndTopBar title="Finalizar pedido" pathname={ pathname } />
-      <h2 data-testid="top-title">Produtos</h2>
-      { finished && <h1>Compra realizada com sucesso!</h1> }
-      { itemsInCart.length === 0 ? <p>Não há produtos no carrinho</p>
-        : (
-          <ul>
-            { itemsInCart.map((product, index) => (
-              <li key={ product.name }>
-                <span data-testid={ `${index}-product-qtd-input` }>
-                  { product.quantity }
-                </span>
-                -
-                <span data-testid={ `${index}-product-name` }>{ product.name }</span>
-                -
-                <span data-testid={ `${index}-product-unit-price` }>
-                  { `(R$ ${parseFloat(product.price / product.quantity)
-                    .toFixed(2).replace('.', ',')} un)` }
-                </span>
-                -
-                <span data-testid={ `${index}-product-total-value` }>
-                  { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
-                </span>
-                <button
-                  type="button"
-                  onClick={ () => deleteItem(product) }
-                  data-testid={ `${index}-removal-button` }
-                >
-                  X
-                </button>
-              </li>
-            )) }
-          </ul>
-        ) }
-      <h1 data-testid="order-total-value">
-        { `Total: R$ ${parseFloat(itemsInCart
-          .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2).replace('.', ',')}.` }
-      </h1>
-      <form>
-        <h1>Endereço</h1>
-        <Input
-          id="checkout-street-input"
-          name="Rua:"
-          field={ street }
-          setField={ setStreet }
+      <div className="checkoutContainer">
+        <div className="cartContainer">
+          <h2 data-testid="top-title">Produtos</h2>
+          { itemsInCart.length === 0 ? <p>Não há produtos no carrinho</p>
+            : (
+              <ul>
+                { itemsInCart.map((product, index) => (
+                  <li key={ product.name }>
+                    <span data-testid={ `${index}-product-qtd-input` }>
+                      { product.quantity }
+                    </span>
+                    -
+                    <span data-testid={ `${index}-product-name` }>{ product.name }</span>
+                    -
+                    <span data-testid={ `${index}-product-unit-price` }>
+                      { `(R$ ${parseFloat(product.price / product.quantity)
+                        .toFixed(2).replace('.', ',')} un)` }
+                    </span>
+                    -
+                    <span data-testid={ `${index}-product-total-value` }>
+                      { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
+                    </span>
+                    <button
+                      type="button"
+                      onClick={ () => deleteItem(product) }
+                      data-testid={ `${index}-removal-button` }
+                    >
+                      X
+                    </button>
+                  </li>
+                )) }
+              </ul>
+            ) }
+          <h2 data-testid="order-total-value">
+            { `Total: R$ ${parseFloat(itemsInCart
+              .reduce((acc, curr) => acc + +curr.price, 0))
+              .toFixed(2).replace('.', ',')}.` }
+          </h2>
+        </div>
+        <form>
+          <h2>Endereço</h2>
+          <Input
+            id="checkout-street-input"
+            name="Rua:"
+            field={ street }
+            setField={ setStreet }
+          />
+          <Input
+            id="checkout-house-number-input"
+            name="Número da casa:"
+            field={ houseNumber }
+            setField={ setHouseNumber }
+          />
+        </form>
+        <SubmitButton
+          onClick={ handleFinishOrder }
+          name="Finalizar Pedido"
+          disabled={ itemsInCart.length === 0 || !street || !houseNumber }
+          id="checkout-finish-btn"
         />
-        <Input
-          id="checkout-house-number-input"
-          name="Número da casa:"
-          field={ houseNumber }
-          setField={ setHouseNumber }
-        />
-      </form>
-      <SubmitButton
-        onClick={ handleFinishOrder }
-        name="Finalizar Pedido"
-        disabled={ itemsInCart.length === 0 || !street || !houseNumber }
-        id="checkout-finish-btn"
-      />
+        { finished && <h1>Compra realizada com sucesso!</h1> }
+      </div>
     </div>
   );
 }
