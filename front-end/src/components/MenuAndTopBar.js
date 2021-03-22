@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TopBar from './TopBar';
 import SideMenu from './SideMenu';
+import '../styles/components/MenuAndTopBar.css';
 
 const MenuAndTopBar = ({ pathname, title }) => {
   const adminMenuOptions = [
@@ -18,7 +19,7 @@ const MenuAndTopBar = ({ pathname, title }) => {
   const isAdmin = pathname.includes('admin');
 
   return (
-    <div>
+    <div className={ isAdmin ? 'sideBarAdjust' : '' }>
       { isAdmin && <SideMenu menuOptions={ adminMenuOptions } /> }
       { !isAdmin && (
         <TopBar

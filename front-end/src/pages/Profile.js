@@ -44,7 +44,7 @@ function Profile({ location: { pathname } }) {
   };
 
   return (
-    <div>
+    <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
       <MenuAndTopBar pathname={ pathname } title="Meu perfil" />
       { isAdmin ? (
         <div className="adminProfileContainer">
