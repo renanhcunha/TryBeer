@@ -42,6 +42,7 @@ const salesFormatter = (sales) => (
 const getOrdersByUserId = async (userId) => {
   const [sales] = await connection
     .execute('SELECT * FROM sales WHERE user_id=? ORDER BY id', [userId]);
+
   return salesFormatter(sales);
 };
 

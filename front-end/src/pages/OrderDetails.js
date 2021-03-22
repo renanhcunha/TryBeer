@@ -6,6 +6,7 @@ import { getUserToken } from '../services/localStorage';
 import dateFormatter from '../services/dateFormatter';
 import API from '../services/API';
 import OrderDetailCard from '../components/OrderDetailCard';
+import '../styles/pages/OrderDetails.css';
 
 function OrderDetails({ location: { pathname } }) {
   const { id } = useParams();
@@ -51,42 +52,46 @@ function OrderDetails({ location: { pathname } }) {
       { (currentOrder.length > 0) && (
         <div>
           <MenuAndTopBar title="Cliente - Detalhes do Pedido" pathname={ pathname } />
-          <h1 data-testid="order-number">
-            { `Pedido ${currentOrder[0].id}` }
-          </h1>
-          { isAdmin ? (
-            <h1 data-testid="order-status">
-              { currentOrder[0].status }
-            </h1>
-          ) : (
-            <h1 data-testid="order-date">
-              { dateFormatter(currentOrder[0].date) }
-            </h1>
-          ) }
-          <ul>
-            { currentOrder.map((product, index) => (
-              <OrderDetailCard
-                product={ product }
-                index={ index }
-                isAdmin={ isAdmin }
-                key={ product.name }
-              />
-            )) }
-          </ul>
-          <h1 data-testid="order-total-value">
-            { `Total: R$ ${parseFloat(currentOrder[0].total)
-              .toFixed(2).replace('.', ',')}.` }
-          </h1>
-          { isAdmin && (
-            <button
-              data-testid="mark-as-delivered-btn"
-              type="button"
-              onClick={ () => handleStatus(currentOrder[0].id) }
-              style={ { display: delivered ? 'none' : 'block' } }
-            >
-              Marcar como entregue
-            </button>
-          ) }
+          <div className="orderDetailsContainer">
+            <div className="orderDetailsTitleContainer">
+              <h2 data-testid="order-number">
+                { `Pedido ${currentOrder[0].id}` }
+              </h2>
+              { isAdmin ? (
+                <h2 data-testid="order-status">
+                  { currentOrder[0].status }
+                </h2>
+              ) : (
+                <h2 data-testid="order-date">
+                  { dateFormatter(currentOrder[0].date) }
+                </h2>
+              ) }
+            </div>
+            <ul>
+              { currentOrder.map((product, index) => (
+                <OrderDetailCard
+                  product={ product }
+                  index={ index }
+                  isAdmin={ isAdmin }
+                  key={ product.name }
+                />
+              )) }
+            </ul>
+            <h2 data-testid="order-total-value">
+              { `Total: R$ ${parseFloat(currentOrder[0].total)
+                .toFixed(2).replace('.', ',')}.` }
+            </h2>
+            { isAdmin && (
+              <button
+                data-testid="mark-as-delivered-btn"
+                type="button"
+                onClick={ () => handleStatus(currentOrder[0].id) }
+                style={ { display: delivered ? 'none' : 'block' } }
+              >
+                Marcar como entregue
+              </button>
+            ) }
+          </div>
         </div>
       ) }
     </div>

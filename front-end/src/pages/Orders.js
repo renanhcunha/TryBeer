@@ -5,6 +5,7 @@ import ProductsContext from '../context/ProductsContext';
 import MenuAndTopBar from '../components/MenuAndTopBar';
 import OrderCard from '../components/OrderCard';
 import { getOrdersByUserId, getAllOrders } from '../services/API';
+import '../styles/pages/Orders.css';
 
 function Orders({ location: { pathname } }) {
   const { orders, setOrders } = useContext(ProductsContext);
@@ -32,11 +33,16 @@ function Orders({ location: { pathname } }) {
   return (
     <div>
       <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
-      { orders.map((order, index) => (<OrderCard
-        key={ order.orderId }
-        order={ order }
-        index={ index }
-      />)) }
+      <div className="ordersPageContainer">
+        <h2>Pedidos Pendentes</h2>
+        <div className="ordersContainer">
+          { orders.map((order, index) => (<OrderCard
+            key={ order.orderId }
+            order={ order }
+            index={ index }
+          />)) }
+        </div>
+      </div>
     </div>
   );
 }

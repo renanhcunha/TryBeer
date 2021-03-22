@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Checkout from './pages/Checkout';
 import OrderDetails from './pages/OrderDetails';
+import './styles/global.css';
 
 function App() {
   return (

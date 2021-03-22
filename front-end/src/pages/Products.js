@@ -6,6 +6,7 @@ import MenuAndTopBar from '../components/MenuAndTopBar';
 import ProductsContext from '../context/ProductsContext';
 import { getCartItems, getUserToken } from '../services/localStorage';
 import API from '../services/API';
+import '../styles/pages/Products.css';
 
 function Products({ location: { pathname } }) {
   const history = useHistory();
@@ -43,21 +44,25 @@ function Products({ location: { pathname } }) {
   }, []);
 
   return (
-    <div className="container">
+    <div className="productsPageContainer">
       <MenuAndTopBar title="TryBeer" pathname={ pathname } />
-      <button
-        type="button"
-        data-testid="checkout-bottom-btn"
-        onClick={ goToCheckout }
-        disabled={ handleVisible() }
-      >
-        Ver Carrinho
-        <span data-testid="checkout-bottom-btn-value">
-          { `R$ ${parseFloat(itemsInCart
-            .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2).replace('.', ',')}` }
-        </span>
-      </button>
-      <div className="row">
+      <div className="checkoutBtnContainer">
+        <button
+          type="button"
+          data-testid="checkout-bottom-btn"
+          onClick={ goToCheckout }
+          disabled={ handleVisible() }
+          className="checkoutBtn"
+        >
+          Ver Carrinho
+          <span data-testid="checkout-bottom-btn-value">
+            {`R$ ${parseFloat(itemsInCart
+              .reduce((acc, curr) => acc + +curr.price, 0)).toFixed(2)
+              .replace('.', ',')}` }
+          </span>
+        </button>
+      </div>
+      <div className="row productsContainer">
         { !isLoading && productsList.map((product, index) => {
           const { name } = product;
 
