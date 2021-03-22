@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 
 function SubmitButton({ name, disabled, id, onClick }) {
   return (
-    <div>
-      <button
-        type="button"
-        disabled={ disabled }
-        data-testid={ id }
-        onClick={ onClick }
-      >
-        { name }
-      </button>
-    </div>
+    <button
+      type="button"
+      disabled={ disabled }
+      data-testid={ id }
+      onClick={ onClick }
+    >
+      { name }
+    </button>
   );
 }
 

@@ -1,35 +1,54 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import HamburgerMenu from 'react-hamburger-menu';
 import SideMenu from './SideMenu';
-import './TopBar.css';
+import '../styles/components/TopBar.css';
 
 const TopBar = ({ text, sideMenuOptions, isAdmin }) => {
   const [visibleSide, setVisibleSide] = useState(false);
 
   return (
-    <div className="topBar">
-      { !isAdmin ? (
-        <div>
-          <button
-            data-testid="top-hamburguer"
-            onClick={ () => setVisibleSide(!visibleSide) }
-            type="button"
-          >
-            <img src="teste.png" alt="hamburguer" />
-          </button>
-          <h1 data-testid="top-title">
-            { text }
-          </h1>
-          { visibleSide && <SideMenu menuOptions={ sideMenuOptions } /> }
-        </div>
-      ) : (
-        <div>
-          <h1 data-testid="top-title">
-            { text }
-          </h1>
-          <SideMenu menuOptions={ sideMenuOptions } />
-        </div>
-      )}
+    <div>
+      <div className="topBar">
+        { !isAdmin ? (
+          <div>
+            <div className="topTitleContainer">
+              <h1 data-testid="top-title">
+                { text }
+              </h1>
+            </div>
+            <div className={ visibleSide ? 'sideMenuOn' : 'sideMenuOff' }>
+              <div className="hamburguerContainer">
+                <button
+                  data-testid="top-hamburguer"
+                  type="button"
+                >
+                  <HamburgerMenu
+                    isOpen={ visibleSide }
+                    menuClicked={ () => setVisibleSide(!visibleSide) }
+                    width={ 40 }
+                    height={ 35 }
+                    strokeWidth={ 1 }
+                    rotate={ 0 }
+                    color="white"
+                    borderRadius={ 0 }
+                    animationDuration={ 0.5 }
+                  />
+                </button>
+              </div>
+              { visibleSide && <SideMenu menuOptions={ sideMenuOptions } /> }
+            </div>
+          </div>
+        ) : (
+          <div>
+            <h1 data-testid="top-title">
+              { text }
+            </h1>
+            <SideMenu menuOptions={ sideMenuOptions } />
+          </div>
+        )}
+      </div>
+      <div className="topBarMargin" />
     </div>
   );
 };

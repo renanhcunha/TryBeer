@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ProductsContext from '../context/ProductsContext';
 import AddBtn from './AddBtn';
 import RemoveBtn from './RemoveBtn';
+import '../styles/components/ProductCard.css';
 
 function ProductCard({ product: {
   url_image: urlImage,
@@ -19,28 +20,28 @@ function ProductCard({ product: {
   }
 
   return (
-    <div className="col-md">
+    <div className="col-md productCardContainer">
       <img
         src={ urlImage }
         alt={ name }
-        height="150px"
+        // height="150px"
         data-testid={ `${indexNumber}-product-img` }
       />
       <p data-testid={ `${indexNumber}-product-name` }>{ name }</p>
       <p data-testid={ `${indexNumber}-product-price` }>
         { `R$ ${parseFloat(price).toFixed(2).replace('.', ',')}` }
       </p>
-      <div className="col-md">
-        <AddBtn
-          productName={ name }
-          index={ indexNumber }
-          unitPrice={ +price }
-        />
-        <p data-testid={ `${indexNumber}-product-qtd` }>{ quantity }</p>
+      <div className="col-md quantityContainer">
         <RemoveBtn
           productName={ name }
           index={ indexNumber }
           currentQuantity={ quantity }
+          unitPrice={ +price }
+        />
+        <p data-testid={ `${indexNumber}-product-qtd` }>{ quantity }</p>
+        <AddBtn
+          productName={ name }
+          index={ indexNumber }
           unitPrice={ +price }
         />
       </div>

@@ -23,15 +23,13 @@ function RemoveBtn({ productName, index, currentQuantity, unitPrice }) {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        data-testid={ `${index}-product-minus` }
-        onClick={ changeProductQuantity }
-      >
-        -
-      </button>
-    </div>
+    <button
+      type="button"
+      data-testid={ `${index}-product-minus` }
+      onClick={ changeProductQuantity }
+    >
+      -
+    </button>
   );
 }
 

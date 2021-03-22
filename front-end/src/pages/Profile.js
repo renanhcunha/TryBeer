@@ -1,20 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Input from '../components/Input';
 import MenuAndTopBar from '../components/MenuAndTopBar';
 import SubmitButton from '../components/SubmitButton';
-import UserContext from '../context/UserContext';
 import API from '../services/API';
-import { getUserToken } from '../services/localStorage';
+import { getUserData, getUserToken } from '../services/localStorage';
+import '../styles/pages/Profile.css';
 
 function Profile({ location: { pathname } }) {
-  const { user } = useContext(UserContext);
-  const [name, setName] = useState(user.name);
+  const user = getUserData();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
   const history = useHistory();
 
   const isAdmin = pathname.includes('admin');
+
+  const loadUserInfo = () => {
+    if (user) {
+      setName(user.name);
+      setEmail(user.email);
+    }
+  };
 
   const checkToken = async () => {
     const token = getUserToken();
@@ -24,6 +32,7 @@ function Profile({ location: { pathname } }) {
 
   useEffect(() => {
     checkToken();
+    loadUserInfo();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -31,19 +40,20 @@ function Profile({ location: { pathname } }) {
 
   const handleUpdateName = async () => {
     setIsUpdated(true);
-    await API.updateUserName(name, user.email);
+    await API.updateUserName(name, email);
   };
 
   return (
     <div>
       <MenuAndTopBar pathname={ pathname } title="Meu perfil" />
       { isAdmin ? (
-        <div>
-          <h2 data-testid="profile-name">{ `Nome: ${name}` }</h2>
-          <h2 data-testid="profile-email">{ `Email: ${user.email}` }</h2>
+        <div className="adminProfileContainer">
+          <h2>Perfil</h2>
+          <h3 data-testid="profile-name">{ `Nome: ${name}` }</h3>
+          <h3 data-testid="profile-email">{ `Email: ${email}` }</h3>
         </div>
       ) : (
-        <div>
+        <div className="userProfileContainer">
           <Input
             id="profile-name-input"
             name="Nome"
@@ -53,7 +63,7 @@ function Profile({ location: { pathname } }) {
           <Input
             id="profile-email-input"
             name="Email"
-            field={ user.email }
+            field={ email }
             readOnly
           />
           <SubmitButton

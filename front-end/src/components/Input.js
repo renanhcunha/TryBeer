@@ -3,19 +3,17 @@ import PropTypes from 'prop-types';
 
 function Input({ id, name, field, setField = null, type = 'text', readOnly = false }) {
   return (
-    <div>
-      <label htmlFor={ name }>
-        {name}
-        <input
-          data-testid={ id }
-          value={ field }
-          id={ name }
-          onChange={ ({ target: { value } }) => setField(value) }
-          type={ type }
-          readOnly={ readOnly }
-        />
-      </label>
-    </div>
+    <label htmlFor={ name }>
+      {name}
+      <input
+        data-testid={ id }
+        value={ field }
+        id={ name }
+        onChange={ ({ target: { value } }) => setField(value) }
+        type={ type }
+        readOnly={ readOnly }
+      />
+    </label>
   );
 }
 

@@ -42,6 +42,7 @@ const salesFormatter = (sales) => (
 const getOrdersByUserId = async (userId) => {
   const [sales] = await connection
     .execute('SELECT * FROM sales WHERE user_id=? ORDER BY id', [userId]);
+
   return salesFormatter(sales);
 };
 
@@ -51,9 +52,38 @@ const getAllOrders = async () => {
   return salesFormatter(sales);
 };
 
+const getOrderProductsById = async (orderId) => {
+  const [orderProducts] = await connection.execute(`SELECT * FROM sales_products 
+  INNER JOIN products ON sales_products.product_id = products.id 
+  INNER JOIN sales ON sales_products.sale_id = sales.id WHERE sale_id = ?`, [orderId]);
+
+  const formattedOrder = orderProducts.map(({
+    id, name, price, status, quantity,
+    sale_date: date, total_price: total,
+  }) => ({
+    id,
+    name,
+    price,
+    quantity,
+    date,
+    total,
+    status,
+  }));
+
+  return formattedOrder;
+};
+
+const changeStatus = async (id) => {
+  await connection.execute(
+    'UPDATE sales SET status="Entregue" WHERE id=?', [id],
+  );
+};
+
 module.exports = {
   saveOrder,
   saveOrderItems,
   getOrdersByUserId,
   getAllOrders,
+  getOrderProductsById,
+  changeStatus,
 };
