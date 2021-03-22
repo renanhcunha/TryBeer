@@ -74,16 +74,18 @@ function Checkout({ location: { pathname } }) {
                     <span data-testid={ `${index}-product-qtd-input` }>
                       { product.quantity }
                     </span>
+                    -
                     <div>
-                      -
-                      <span data-testid={ `${index}-product-name` }>{ product.name }</span>
+                      <span data-testid={ `${index}-product-name` }>
+                        { product.name }
+                      </span>
                       -
                       <span data-testid={ `${index}-product-unit-price` }>
                         { `(R$ ${parseFloat(product.price / product.quantity)
                           .toFixed(2).replace('.', ',')} un)` }
                       </span>
-                      -
                     </div>
+                    -
                     <div>
                       <span data-testid={ `${index}-product-total-value` }>
                         { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
