@@ -18,6 +18,9 @@
 .checkoutContainer div > ul > li {
   margin-bottom: 10px;
   font-size: 1.2rem;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .checkoutContainer > form > label {
@@ -31,6 +34,7 @@
 .checkoutContainer input {
   height: 2rem;
   margin: 10px 0 15px;
+  padding-left: 10px;
   border-radius: 5px;
 }
 
@@ -52,20 +56,39 @@
   transition: background-color 0.2s;
 }
 
-.checkoutContainer button:hover:not([disabled]) {
+.checkoutContainer > button:hover:not([disabled]) {
   background-color: rgba(0, 128, 128, 0.7);
   cursor: pointer;
 }
 
-.checkoutContainer button:disabled, .checkoutContainer button:disabled:hover {
+.checkoutContainer > button:disabled, .checkoutContainer button:disabled:hover {
   opacity: 0.2;
   cursor: auto;
+}
+
+.cartContainer {
+  margin-bottom: 15px;
 }
 
 .cartContainer > p {
   margin-bottom: 15px;
 }
 
-.cartContainer {
-  margin-bottom: 15px;
+.cartContainer > ul > li > span {
+  margin: 0 5px;
+}
+
+.cartContainer > ul > li > div > span {
+  margin: 0 5px;
+}
+
+.cartContainer > ul > li > div > button {
+  height: 1.6rem;
+  width: 1.5rem;
+  border-radius: 5px;
+}
+
+.cartContainer > ul > li > div > button:hover {
+  cursor: pointer;
+  background-color: red;
 }
