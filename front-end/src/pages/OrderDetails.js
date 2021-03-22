@@ -48,9 +48,9 @@ function OrderDetails({ location: { pathname } }) {
   }, [currentOrder]);
 
   return (
-    <div>
+    <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
       { (currentOrder.length > 0) && (
-        <div>
+        <>
           <MenuAndTopBar title="Cliente - Detalhes do Pedido" pathname={ pathname } />
           <div className="orderDetailsContainer">
             <div className="orderDetailsTitleContainer">
@@ -92,7 +92,7 @@ function OrderDetails({ location: { pathname } }) {
               </button>
             ) }
           </div>
-        </div>
+        </>
       ) }
     </div>
   );

@@ -31,7 +31,7 @@ function Orders({ location: { pathname } }) {
     );
   }
   return (
-    <div>
+    <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
       <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
       <div className="ordersPageContainer">
         <h2>Pedidos Pendentes</h2>

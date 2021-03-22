@@ -32,6 +32,7 @@
 .loginContainer input {
   height: 2rem;
   margin: 10px 0 15px;
+  padding-left: 10px;
   border-radius: 5px;
 }
 

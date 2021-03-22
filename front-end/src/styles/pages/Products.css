@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+.checkoutBtnContainer > button > span {
+  margin-left: 15px;
+}
+
 .checkoutBtn {
   border: none;
   background-color: darkcyan;
@@ -37,6 +41,8 @@
 }
 
 .productsContainer {
+  padding-bottom: 50px;
+  
   display: flex;
   flex-wrap: wrap;
 }
