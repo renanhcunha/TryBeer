@@ -32,28 +32,31 @@ function Login() {
   };
 
   return (
-    <div className="loginContainer">
-      <Input
-        id="email-input"
-        name="Email"
-        field={ email }
-        setField={ setEmail }
-      />
-      <Input
-        id="password-input"
-        name="Senha"
-        field={ password }
-        setField={ setPassword }
-        type="password"
-      />
-      <SubmitButton
-        onClick={ () => handleHome(email, password) }
-        name="Entrar"
-        disabled={ loginDataValidator(email, password) }
-        id="signin-btn"
-      />
-      { !validUser && <p>Usuário não cadastrado ou senha inválida.</p> }
-      <Link to="/register" data-testid="no-account-btn">Ainda não tenho conta</Link>
+    <div className="loginPage">
+      <h1>Trybeer</h1>
+      <div className="loginContainer">
+        <Input
+          id="email-input"
+          name="Email"
+          field={ email }
+          setField={ setEmail }
+        />
+        <Input
+          id="password-input"
+          name="Senha"
+          field={ password }
+          setField={ setPassword }
+          type="password"
+        />
+        <SubmitButton
+          onClick={ () => handleHome(email, password) }
+          name="Entrar"
+          disabled={ loginDataValidator(email, password) }
+          id="signin-btn"
+        />
+        { !validUser && <p>Usuário não cadastrado ou senha inválida.</p> }
+        <Link to="/register" data-testid="no-account-btn">Ainda não tenho conta</Link>
+      </div>
     </div>
   );
 }

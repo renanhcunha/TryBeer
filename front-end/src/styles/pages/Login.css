@@ -1,7 +1,24 @@
+.loginPage {
+  height: 100vh;
+  background-image: url("../../images/beer1.jpg");
+  background-size: contain;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginPage h1 {
+  font-size: 5rem;
+  text-shadow: 0 0 20px black;
+  color: white;
+  margin-bottom: 40px;
+}
+
 .loginContainer {
-  height: 50vh;
-  width: 50vh;
-  margin: 30vh auto;
+  height: 370px;
+  width: 330px;
   border: 1px solid black;
   border-radius: 5px;
   background-color: navajowhite;
