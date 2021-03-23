@@ -75,10 +75,7 @@
 }
 
 .cartContainer > ul > li > span {
-  margin: 0 5px;
-}
-
-.cartContainer > ul > li > div > span {
+  padding: 4px;
   margin: 0 5px;
 }
 
@@ -88,7 +85,10 @@
   border-radius: 5px;
 }
 
-.cartContainer > ul > li > div > button:hover {
-  cursor: pointer;
-  background-color: red;
+.remove-btn-container > .quantity-btn {
+  margin: 0;
+}
+
+.remove-btn-container > .quantity-btn:hover {
+  filter: invert(8%) sepia(66%) saturate(7240%) hue-rotate(2deg) brightness(112%) contrast(90%);
 }
