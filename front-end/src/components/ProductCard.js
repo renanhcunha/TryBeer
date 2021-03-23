@@ -24,14 +24,13 @@ function ProductCard({ product: {
       <img
         src={ urlImage }
         alt={ name }
-        // height="150px"
         data-testid={ `${indexNumber}-product-img` }
       />
       <p data-testid={ `${indexNumber}-product-name` }>{ name }</p>
       <p data-testid={ `${indexNumber}-product-price` }>
         { `R$ ${parseFloat(price).toFixed(2).replace('.', ',')}` }
       </p>
-      <div className="col-md quantityContainer">
+      <div className="quantityContainer">
         <RemoveBtn
           productName={ name }
           index={ indexNumber }

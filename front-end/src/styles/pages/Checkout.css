@@ -21,6 +21,7 @@
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .checkoutContainer > form > label {
@@ -75,7 +76,6 @@
 }
 
 .cartContainer > ul > li > span {
-  padding: 4px;
   margin: 0 5px;
 }
 
@@ -83,6 +83,10 @@
   height: 1.6rem;
   width: 1.5rem;
   border-radius: 5px;
+}
+
+.remove-btn-container {
+  width: 35px;
 }
 
 .remove-btn-container > .quantity-btn {
