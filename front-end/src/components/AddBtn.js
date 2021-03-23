@@ -4,10 +4,11 @@ import ProductsContext from '../context/ProductsContext';
 import { updateCartItemsQty, getCartItems } from '../services/localStorage';
 import Plus from '../assets/Plus.svg';
 
-function AddBtn({ productName, index, unitPrice }) {
+function AddBtn({ productName, index, unitPrice, activatePulse }) {
   const { setItemsInCart } = useContext(ProductsContext);
 
   const changeProductQuantity = () => {
+    activatePulse();
     const cartItems = getCartItems();
     const alreadyInCart = cartItems.find((product) => productName === product.name);
     if (alreadyInCart) {
@@ -50,6 +51,7 @@ AddBtn.propTypes = {
   productName: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   unitPrice: PropTypes.number.isRequired,
+  activatePulse: PropTypes.func.isRequired,
 };
 
 export default AddBtn;

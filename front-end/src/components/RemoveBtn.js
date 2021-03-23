@@ -4,10 +4,11 @@ import ProductsContext from '../context/ProductsContext';
 import { updateCartItemsQty, getCartItems } from '../services/localStorage';
 import Minus from '../assets/Minus.svg';
 
-function RemoveBtn({ productName, index, currentQuantity, unitPrice }) {
+function RemoveBtn({ productName, index, currentQuantity, unitPrice, activatePulse }) {
   const { setItemsInCart } = useContext(ProductsContext);
 
   const changeProductQuantity = () => {
+    activatePulse();
     const cartItems = getCartItems();
 
     const updatedList = cartItems.reduce((newList, currentProduct) => {
@@ -41,6 +42,7 @@ RemoveBtn.propTypes = {
   index: PropTypes.number.isRequired,
   currentQuantity: PropTypes.number.isRequired,
   unitPrice: PropTypes.number.isRequired,
+  activatePulse: PropTypes.func.isRequired,
 };
 
 export default RemoveBtn;
