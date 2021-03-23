@@ -33,7 +33,7 @@ function Login() {
 
   return (
     <div className="loginPage">
-      <h1>Trybeer</h1>
+      <h1 className="pulse">Trybeer</h1>
       <div className="loginContainer">
         <Input
           id="email-input"

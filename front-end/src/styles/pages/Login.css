@@ -1,7 +1,8 @@
 .loginPage {
   height: 100vh;
   background-image: url("../../images/beer1.jpg");
-  background-size: contain;
+  background-size: cover;
+  background-position: center center;
 
   display: flex;
   flex-direction: column;
@@ -76,4 +77,14 @@
 .loginContainer p {
   color: brown;
   margin-bottom: 10px;
+}
+
+.pulse {
+  animation: pulse 0.7s infinite;
+  margin: 0 auto;
+  display: table;
+  margin-top: 50px;
+  animation-direction: alternate;
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
 }

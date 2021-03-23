@@ -13,8 +13,8 @@ body, input, button {
 }
 
 .quantity-btn {
-  margin: 0 5px;
   filter: invert(29%) sepia(95%) saturate(1633%) hue-rotate(158deg) brightness(91%) contrast(101%);
+  margin: 0 5px;
   transition: 288ms;
 }
 
@@ -22,4 +22,13 @@ body, input, button {
   filter: invert(90%) sepia(81%) saturate(7322%) hue-rotate(153deg) brightness(103%) contrast(92%);
   transition: 288ms;
   width: 38px;
+}
+
+@media(max-width: 530px) {
+  .quantity-btn {
+    width: 45px;
+  }
+  .quantity-btn:hover {
+    width: 50px;
+  }
 }

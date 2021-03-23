@@ -3,12 +3,13 @@
   position: fixed;
   margin-top: 0;
   text-align: center;
-  height: 10vh;
+  height: 70px;
   background-color: gray;
   color: white;
 
   display: flex;
   align-items: center;
+  z-index: 10;
 }
 
 .topTitleContainer > h1 {
@@ -16,13 +17,14 @@
 }
 
 .topBarMargin {
-  padding-bottom: 10vh;
+  padding-bottom: 70px;
 }
 
 .sideMenuOff {
   display: flex;
   flex-direction: column;
   position: fixed;
+  z-index: 10;
 }
 
 .sideMenuOn {
@@ -31,11 +33,12 @@
   display: flex;
   flex-direction: column;
   position: fixed;
+  z-index: 10;
 }
 
 .hamburguerContainer {
   width: 40px;
-  height: 10vh;
+  height: 70px;
   margin-left: 80px;
 
   display: flex;
@@ -53,6 +56,10 @@
   background-color: transparent;
 }
 
+.hamburguerContainer > button:focus {
+  outline: none;
+}
+
 .side-menu-container {
   background-color: gray;
   height: 100%;
@@ -60,6 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 10;
 }
 
 .side-menu-container a {
@@ -69,14 +77,15 @@
 }
 
 .side-menu-container a > div {
+  background-color: rgb(128, 128, 128, 0.7);
+  border: 1px solid rgb(128, 128, 128, 0.7);
+  border-radius: 5px;
   margin: 10px 20px;
   padding: 10px;
 }
 
 .side-menu-container a > div:hover {
   border: 1px solid white;
-  border-radius: 5px;
-  background-color: rgb(128, 128, 128, 0.7);
   opacity: 0.5;
 }
 
@@ -93,4 +102,10 @@
   background-color: rgb(255, 0, 0, 0.6);
   color: white;
   font-weight: 600;
+}
+
+@media(max-width: 620px) {
+  .hamburguerContainer {
+    margin-left: 15px;
+  }
 }
