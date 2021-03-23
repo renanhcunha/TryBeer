@@ -21,6 +21,7 @@
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .checkoutContainer > form > label {
@@ -78,17 +79,22 @@
   margin: 0 5px;
 }
 
-.cartContainer > ul > li > div > span {
-  margin: 0 5px;
-}
-
 .cartContainer > ul > li > div > button {
   height: 1.6rem;
   width: 1.5rem;
   border-radius: 5px;
 }
 
-.cartContainer > ul > li > div > button:hover {
-  cursor: pointer;
-  background-color: red;
+.remove-btn-container {
+  width: 35px;
+  display: flex;
+  justify-content: center;
+}
+
+.remove-btn-container > .quantity-btn {
+  margin: 0;
+}
+
+.remove-btn-container > .quantity-btn:hover {
+  filter: invert(8%) sepia(66%) saturate(7240%) hue-rotate(2deg) brightness(112%) contrast(90%);
 }

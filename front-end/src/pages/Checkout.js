@@ -14,6 +14,7 @@ import {
 } from '../services/localStorage';
 import API from '../services/API';
 import '../styles/pages/Checkout.css';
+import Remove from '../assets/Remove.svg';
 
 function Checkout({ location: { pathname } }) {
   const history = useHistory();
@@ -74,29 +75,26 @@ function Checkout({ location: { pathname } }) {
                     <span data-testid={ `${index}-product-qtd-input` }>
                       { product.quantity }
                     </span>
-                    -
-                    <div>
-                      <span data-testid={ `${index}-product-name` }>
-                        { product.name }
-                      </span>
-                      -
-                      <span data-testid={ `${index}-product-unit-price` }>
-                        { `(R$ ${parseFloat(product.price / product.quantity)
-                          .toFixed(2).replace('.', ',')} un)` }
-                      </span>
-                    </div>
-                    -
-                    <div>
-                      <span data-testid={ `${index}-product-total-value` }>
-                        { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
-                      </span>
-                      <button
-                        type="button"
+                    <span data-testid={ `${index}-product-name` }>
+                      { product.name }
+                    </span>
+                    <span data-testid={ `${index}-product-unit-price` }>
+                      { `(R$ ${parseFloat(product.price / product.quantity)
+                        .toFixed(2).replace('.', ',')} un)` }
+                    </span>
+                    <span data-testid={ `${index}-product-total-value` }>
+                      { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
+                    </span>
+                    <div className="remove-btn-container">
+                      <input
+                        type="image"
+                        className="quantity-btn"
                         onClick={ () => deleteItem(product) }
                         data-testid={ `${index}-removal-button` }
-                      >
-                        X
-                      </button>
+                        src={ Remove }
+                        alt="remove-btn"
+                        width="34"
+                      />
                     </div>
                   </li>
                 )) }

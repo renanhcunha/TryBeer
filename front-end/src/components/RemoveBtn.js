@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import ProductsContext from '../context/ProductsContext';
 import { updateCartItemsQty, getCartItems } from '../services/localStorage';
+import Minus from '../assets/Minus.svg';
 
 function RemoveBtn({ productName, index, currentQuantity, unitPrice }) {
   const { setItemsInCart } = useContext(ProductsContext);
@@ -23,13 +24,15 @@ function RemoveBtn({ productName, index, currentQuantity, unitPrice }) {
   };
 
   return (
-    <button
-      type="button"
+    <input
+      type="image"
+      className="quantity-btn"
       data-testid={ `${index}-product-minus` }
       onClick={ changeProductQuantity }
-    >
-      -
-    </button>
+      src={ Minus }
+      alt="minus-btn"
+      width="34"
+    />
   );
 }
 

@@ -32,30 +32,32 @@ function Register() {
   };
 
   return (
-    <div className="registerContainer">
-      <h2>Registro</h2>
-      <Input id="signup-name" name="Nome" field={ name } setField={ setName } />
-      <Input id="signup-email" name="Email" field={ email } setField={ setEmail } />
-      <Input
-        id="signup-password"
-        name="Senha"
-        field={ password }
-        setField={ setPassword }
-        type="password"
-      />
-      <Checkbox
-        id="signup-seller"
-        name="Quero vender"
-        field={ check }
-        setField={ setCheck }
-      />
-      <SubmitButton
-        name="Cadastrar"
-        onClick={ handleRegister }
-        disabled={ signupDataValidator(name, email, password) }
-        id="signup-btn"
-      />
-      { badReq && <p>E-mail already in database.</p> }
+    <div className="registerPageContainer">
+      <div className="registerContainer">
+        <h2>Registro</h2>
+        <Input id="signup-name" name="Nome" field={ name } setField={ setName } />
+        <Input id="signup-email" name="Email" field={ email } setField={ setEmail } />
+        <Input
+          id="signup-password"
+          name="Senha"
+          field={ password }
+          setField={ setPassword }
+          type="password"
+        />
+        <Checkbox
+          id="signup-seller"
+          name="Quero vender"
+          field={ check }
+          setField={ setCheck }
+        />
+        <SubmitButton
+          name="Cadastrar"
+          onClick={ handleRegister }
+          disabled={ signupDataValidator(name, email, password) }
+          id="signup-btn"
+        />
+        { badReq && <p>E-mail already in database.</p> }
+      </div>
     </div>
   );
 }
