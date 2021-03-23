@@ -49,8 +49,47 @@
   justify-content: center;
 }
 
+.quantityContainer {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.quantityContainer p {
+  font-size: 1.5rem;
+}
+
+.quantityBtnContainer {
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+}
+
+.pulseOnce {
+  text-align: center;
+  animation: pulse 0.7s;
+  animation-direction: alternate;
+  animation-name: pulse;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media(max-width: 620px) {
   .checkoutBtn {
     width: 70%;
+  }
+
+  .quantityContainer p {
+    font-size: 2rem;
+    margin: 5px 20px 0;
   }
 }
