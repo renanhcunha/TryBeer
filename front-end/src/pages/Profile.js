@@ -7,6 +7,7 @@ import SubmitButton from '../components/SubmitButton';
 import API from '../services/API';
 import { getUserData, getUserToken } from '../services/localStorage';
 import '../styles/pages/Profile.css';
+import imgSRC from '../services/profilePic';
 
 function Profile({ location: { pathname } }) {
   const user = getUserData();
@@ -46,6 +47,7 @@ function Profile({ location: { pathname } }) {
   return (
     <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
       <MenuAndTopBar pathname={ pathname } title="Meu perfil" />
+      <img src={ imgSRC() } alt="user profile pic"/>
       { isAdmin ? (
         <div className="adminProfileContainer">
           <h2>Perfil</h2>
