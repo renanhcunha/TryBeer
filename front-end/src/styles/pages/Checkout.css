@@ -87,6 +87,8 @@
 
 .remove-btn-container {
   width: 35px;
+  display: flex;
+  justify-content: center;
 }
 
 .remove-btn-container > .quantity-btn {
