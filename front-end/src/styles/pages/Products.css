@@ -69,12 +69,12 @@
 
 .pulseOnce {
   text-align: center;
-  animation: pulse 0.7s;
+  animation: pulseOnce 0.7s;
   animation-direction: alternate;
-  animation-name: pulse;
+  animation-name: pulseOnce;
 }
 
-@keyframes pulse {
+@keyframes pulseOnce {
   50% {
     transform: scale(1.5);
   }
