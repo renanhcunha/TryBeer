@@ -42,8 +42,7 @@ function AddBtn({ productName, index, unitPrice }) {
       src={ Plus }
       alt="plus-btn"
       width="34"
-    >
-    </input>
+    />
   );
 }
 
