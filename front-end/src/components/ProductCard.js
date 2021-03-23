@@ -12,6 +12,7 @@ function ProductCard({ product: {
 }, indexNumber }) {
   const [pulse, setPulse] = useState(false);
   const { itemsInCart } = useContext(ProductsContext);
+  const pulseAnimationTime = 700;
   let quantity = 0;
   if (itemsInCart.length > 0) {
     const itemFound = itemsInCart.find((product) => name === product.name);
@@ -22,7 +23,7 @@ function ProductCard({ product: {
 
   const activatePulse = () => {
     setPulse(true);
-    setTimeout(() => setPulse(false), 700);
+    setTimeout(() => setPulse(false), pulseAnimationTime);
   };
 
   return (
