@@ -25,8 +25,11 @@ function Orders({ location: { pathname } }) {
   if (!user) return <Redirect to="/login" />;
   if (orders.length === 0) {
     return (
-      <div>
+      <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
         <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
+        <div className="noOrders">
+          <h2>Não há pedidos registrados.</h2>
+        </div>
       </div>
     );
   }

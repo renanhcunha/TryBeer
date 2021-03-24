@@ -7,12 +7,14 @@ import SubmitButton from '../components/SubmitButton';
 import API from '../services/API';
 import { getUserData, getUserToken } from '../services/localStorage';
 import '../styles/pages/Profile.css';
+import imgSRC from '../services/profilePic';
 
 function Profile({ location: { pathname } }) {
   const user = getUserData();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
+  const [avatarURL, setAvatarURL] = useState('');
   const history = useHistory();
 
   const isAdmin = pathname.includes('admin');
@@ -21,6 +23,7 @@ function Profile({ location: { pathname } }) {
     if (user) {
       setName(user.name);
       setEmail(user.email);
+      setAvatarURL(imgSRC(user.email));
     }
   };
 
@@ -49,11 +52,14 @@ function Profile({ location: { pathname } }) {
       { isAdmin ? (
         <div className="adminProfileContainer">
           <h2>Perfil</h2>
+          <img src={ avatarURL } alt="user profile pic" />
+          <br />
           <h3 data-testid="profile-name">{ `Nome: ${name}` }</h3>
           <h3 data-testid="profile-email">{ `Email: ${email}` }</h3>
         </div>
       ) : (
         <div className="userProfileContainer">
+          <img src={ imgSRC() } alt="user profile pic" />
           <Input
             id="profile-name-input"
             name="Nome"
