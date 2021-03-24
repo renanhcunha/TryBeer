@@ -24,6 +24,10 @@ body, input, button {
   width: 38px;
 }
 
+.quantity-btn:focus {
+  outline: none;
+}
+
 @media(max-width: 530px) {
   .quantity-btn {
     width: 45px;
