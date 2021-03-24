@@ -16,3 +16,13 @@
   text-decoration: none;
   color: black;
 }
+
+.noOrders {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  width: 100vw;
+  height: 85vh;
+}

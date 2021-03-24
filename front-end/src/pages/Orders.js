@@ -27,8 +27,8 @@ function Orders({ location: { pathname } }) {
     return (
       <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
         <MenuAndTopBar pathname={ pathname } title="Meus Pedidos" />
-        <div>
-          <h1 style ={{ textAlign: 'center' }}>Não há pedidos.</h1>
+        <div className="noOrders">
+          <h2>Não há pedidos registrados.</h2>
         </div>
       </div>
     );

@@ -108,4 +108,8 @@
   .hamburguerContainer {
     margin-left: 15px;
   }
+
+  .topTitleContainer > h1 {
+    font-size: 1.8rem;
+  }
 }

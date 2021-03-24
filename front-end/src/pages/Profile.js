@@ -49,15 +49,15 @@ function Profile({ location: { pathname } }) {
       <MenuAndTopBar pathname={ pathname } title="Meu perfil" />
       { isAdmin ? (
         <div className="adminProfileContainer">
-          <h2 style={{ textAlign: 'center' }}>Perfil</h2>
-          <img src={ imgSRC() } alt="user profile pic" style={{ borderRadius: '50%' }} />
-          <br></br>
-          <h3 style={{ textAlign: 'center' } } data-testid="profile-name">{ `Nome: ${name}` }</h3>
-          <h3 style={{ textAlign: 'center' } } data-testid="profile-email">{ `Email: ${email}` }</h3>
+          <h2>Perfil</h2>
+          <img src={ imgSRC() } alt="user profile pic" />
+          <br />
+          <h3 data-testid="profile-name">{ `Nome: ${name}` }</h3>
+          <h3 data-testid="profile-email">{ `Email: ${email}` }</h3>
         </div>
       ) : (
         <div className="userProfileContainer">
-          <img src={ imgSRC() } alt="user profile pic" style={{ borderRadius: '50%' }} />
+          <img src={ imgSRC() } alt="user profile pic" />
           <Input
             id="profile-name-input"
             name="Nome"
