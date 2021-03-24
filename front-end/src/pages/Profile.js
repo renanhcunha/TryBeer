@@ -23,7 +23,7 @@ function Profile({ location: { pathname } }) {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      setAvatarURL(imgSRC(user.email))
+      setAvatarURL(imgSRC(user.email));
     }
   };
 
