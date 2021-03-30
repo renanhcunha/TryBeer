@@ -80,13 +80,15 @@ function Checkout({ location: { pathname } }) {
                     </span>
                     <span
                       className="flexNone"
-                      data-testid={ `${index}-product-unit-price` }>
+                      data-testid={ `${index}-product-unit-price` }
+                    >
                       { `(R$ ${parseFloat(product.price / product.quantity)
                         .toFixed(2).replace('.', ',')} un)` }
                     </span>
                     <span
                       className="flexNone"
-                      data-testid={ `${index}-product-total-value` }>
+                      data-testid={ `${index}-product-total-value` }
+                    >
                       { `R$ ${parseFloat(product.price).toFixed(2).replace('.', ',')}` }
                     </span>
                     <div className="remove-btn-container">
