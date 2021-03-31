@@ -35,4 +35,7 @@ body, input, button {
   .quantity-btn:hover {
     width: 50px;
   }
+  .adminSideBarAdjust {
+    flex-direction: column;
+  }
 }
