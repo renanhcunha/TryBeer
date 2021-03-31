@@ -52,8 +52,8 @@
   color: white;
   border: none;
   border-radius: 5px;
-  width: 30vh;
-  height: 3rem;
+  width: 14rem;
+  height: 4rem;
   font-size: 1.5rem;
   transition: background-color 0.2s;
 }
@@ -105,6 +105,34 @@
 
 .flexNone {
   flex: none;
+}
+
+.modalOverlay {
+  background: rgba(40, 40, 40, 0.8);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  background: var(--white);
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  position: relative;
+}
+
+.modalContainer > h2 {
+  color: white;
 }
 
 @media(max-width: 570px) {
