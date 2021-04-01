@@ -10,8 +10,8 @@
 }
 
 .registerContainer {
-  height: 50vh;
-  width: 40vh;
+  height: 430px;
+  width: 300px;
   border: 1px solid gray;
   border-radius: 5px;
   background-color: antiquewhite;
@@ -71,4 +71,11 @@
 .registerContainer button:disabled, .registerContainer button:disabled:hover {
   opacity: 0.2;
   cursor: auto;
+}
+
+@media(max-height: 600px) {
+  .registerContainer {
+    height: 410px;
+    width: 285px;
+  }
 }

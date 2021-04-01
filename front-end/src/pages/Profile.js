@@ -5,7 +5,7 @@ import Input from '../components/Input';
 import MenuAndTopBar from '../components/MenuAndTopBar';
 import SubmitButton from '../components/SubmitButton';
 import API from '../services/API';
-import { getUserData, getUserToken } from '../services/localStorage';
+import { setUserData, getUserData, getUserToken } from '../services/localStorage';
 import '../styles/pages/Profile.css';
 
 function Profile({ location: { pathname } }) {
@@ -39,8 +39,12 @@ function Profile({ location: { pathname } }) {
   const isNameChanged = (actualName) => user.name !== actualName;
 
   const handleUpdateName = async () => {
+    const userUpdated = { ...user, name }
+    setUserData(userUpdated);
     setIsUpdated(true);
+
     await API.updateUserName(name, email);
+    setTimeout(() => setIsUpdated(false), 1500);
   };
 
   return (
@@ -49,6 +53,7 @@ function Profile({ location: { pathname } }) {
       { isAdmin ? (
         <div className="adminProfileContainer">
           <h2>Perfil</h2>
+          <br />
           <h3 data-testid="profile-name">{ `Nome: ${name}` }</h3>
           <h3 data-testid="profile-email">{ `Email: ${email}` }</h3>
         </div>
@@ -72,7 +77,11 @@ function Profile({ location: { pathname } }) {
             disabled={ !isNameChanged(name) }
             id="profile-save-btn"
           />
-          {isUpdated && <p>Atualização concluída com sucesso</p>}
+          {isUpdated && (
+            <div className="modalContainer">
+              <p>Atualização concluída com sucesso</p>
+            </div>
+          )}
         </div>
       )}
     </div>
