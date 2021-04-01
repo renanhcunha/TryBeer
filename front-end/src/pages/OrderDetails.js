@@ -51,14 +51,18 @@ function OrderDetails({ location: { pathname } }) {
     <div className={ isAdmin ? 'adminSideBarAdjust' : '' }>
       { (currentOrder.length > 0) && (
         <>
-          <MenuAndTopBar title="Cliente - Detalhes do Pedido" pathname={ pathname } />
+          <MenuAndTopBar title="Detalhes do Pedido" pathname={ pathname } />
           <div className="orderDetailsContainer">
             <div className="orderDetailsTitleContainer">
               <h2 data-testid="order-number">
                 { `Pedido ${currentOrder[0].id}` }
               </h2>
               { isAdmin ? (
-                <h2 data-testid="order-status">
+                <h2
+                  className={ currentOrder[0].status === 'Entregue'
+                    ? 'statusDelivered' : 'statusNotDelivered' }
+                  data-testid="order-status"
+                >
                   { currentOrder[0].status }
                 </h2>
               ) : (

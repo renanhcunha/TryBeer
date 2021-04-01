@@ -1,5 +1,5 @@
 .orderDetailsContainer {
-  width: 70vh;
+  width: 600px;
   margin: 40px auto;
 
   display: flex;
@@ -13,6 +13,11 @@
   
   display: flex;
   justify-content: space-between;
+}
+
+.orderDetailsContainer > ul > li > h3 {
+  text-align: center;
+  margin: 0 5px;
 }
 
 .orderDetailsTitleContainer {
@@ -32,8 +37,7 @@
   color: white;
   border: none;
   border-radius: 5px;
-  width: 60%;
-  height: 3rem;
+  padding: 10px;
   font-size: 1.5rem;
   transition: background-color 0.2s;
 }
@@ -41,4 +45,10 @@
 .orderDetailsContainer > button:hover {
   background-color: rgba(0, 128, 128, 0.7);
   cursor: pointer;
+}
+
+@media(max-width: 680px) {
+  .orderDetailsContainer {
+    width: 95vw;
+  }
 }
