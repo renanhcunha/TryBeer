@@ -17,6 +17,10 @@ A aplicação pode ser dividida em três partes:
 
 - API, que será compartilhada entre cliente e admin.
 
+No gif abaixo pode ser verificado o funcionamento da aplicação:
+
+<img src="./trybeer.gif" alt="Trybeer">
+
 ## Tecnologias utilizadas:
 
 - Front-end: React.JS, Context API, React Hooks, HTML, CSS e Javascript
